@@ -1,0 +1,28 @@
+.notification {
+  background-color: #dedede;
+  border: 1px solid #cecece;
+  padding: 5px;
+  border-radius: 5px;
+  overflow: auto;
+  max-height: 415px;
+  .items {
+    .item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 48px;
+      border-radius: 7px;
+      background-color: #eaeaea;
+      margin: 10px 0;
+      .userImage {
+        width: 60px;
+        height: 60px;
+        img {
+          width: inherit;
+          height: inherit;
+          border-radius: 50px;
+        }
+      }
+    }
+  }
+}

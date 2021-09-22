@@ -1,0 +1,45 @@
+<div class="login-form">
+  <div class="login-form-content">
+    <div class="log-form-logo">
+      <div class="logo">
+        <img src="../../../../../../../app/assets/img/icons/logo.png">
+      </div>
+    </div>
+    <label class="login-form-label"> {{'LOGIN.LOGIN' |translate}}</label>
+    <div class="login-content">
+      <form [formGroup]="loginForm" (onSubmit)="submit()">
+        <div class="forign-lang-input">
+          <mat-form-field appearance="outline">
+            <mat-label
+              >{{ "LOGIN.USERNAME" | translate }} </mat-label
+            >
+            <input required  formControlName="username"  [placeholder]="'LOGIN.USERNAME' | translate" matInput placeholder="Username" />
+          </mat-form-field>
+        </div>
+        <div class="forign-lang-input">
+        <mat-form-field appearance="outline">
+          <mat-label>{{ "LOGIN.PASSWORD" | translate }}</mat-label>
+          <input
+            required
+            formControlName="password"
+            type="password"
+            class="forign-lang-input"
+            matInput
+            [placeholder]="'LOGIN.PASSWORD' | translate"
+          />
+        </mat-form-field>
+        </div>
+        <button
+          mat-raised-button
+          [disabled]="loginForm.invalid"
+          type="submit"
+          [promiseBtn]="subscriptions"
+          (click)="submit()"
+          color="primary"
+        >
+          {{'LOGIN.LOGIN' |translate}}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

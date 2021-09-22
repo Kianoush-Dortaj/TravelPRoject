@@ -1,0 +1,95 @@
+<div class=" col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12 p-0 dialog">
+    <div class="topbar col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12">
+        <div class="detail-title">
+            <label>جزئیات</label>
+        </div>
+        <span>
+            <i (click)="close()" class="fas fa-times"></i>
+        </span>
+    </div>
+    <div class=" mian-content content col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12 pt-2 pb-3">
+        <div class="row m-auto col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12 pt-2">
+            <div class="item_name col-md-2 col-xl-2 col-lg-2 col-sm-12 col-lg-2">
+                <label><strong>نام جدول </strong></label>
+            </div>
+            <div class="infos col-md-10 col-xl-10 col-lg-10 col-sm-12 col-lg-10">
+                <div class="showMore col-md-12 col-xl-12 col-lg-12 col-sm-12 col-lg-12 containtText">
+                    <label class="lbl form-group col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12 p-0">
+                        <div class="spanArea col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12">
+                           {{model.tableName}}
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row m-auto col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12 pt-2">
+            <div class="item_name col-md-2 col-xl-2 col-lg-2 col-sm-12 col-lg-2">
+                <label><strong>شناسه </strong></label>
+            </div>
+            <div class="infos col-md-10 col-xl-10 col-lg-10 col-sm-12 col-lg-10">
+                <div class="showMore col-md-12 col-xl-12 col-lg-12 col-sm-12 col-lg-12 containtText">
+                    <label class="lbl form-group col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12 p-0">
+                        <div class="spanArea col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12">
+                           {{model.keyValues}}
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row m-auto col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12 pt-2">
+            <div class="item_name col-md-2 col-xl-2 col-lg-2 col-sm-12 col-lg-2">
+                <label><strong>مقادیر</strong></label>
+            </div>
+            <div class="infos col-md-10 col-xl-10 col-lg-10 col-sm-12 col-lg-10">
+                <div class="showMore col-md-6 col-xl-6 col-lg-6 col-sm-12 col-lg-6 containtText">
+                    <label class="lbl form-group col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12 p-0">
+                        <div class="spanArea col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12">
+                            <div *ngFor="let item of oldValue ;let i =index">
+                                <label [ngClass]="{'diffrent':item===findDiffrent[i]}">{{item | prettyShowJson}}
+
+                                </label>
+                </div>
+            </div>
+            </label>
+        </div>
+        <div class="showMore col-md-6 col-xl-6 col-lg-6 col-sm-12 col-lg-6 containtText">
+            <label class="lbl form-group col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12 p-0">
+                        <div class="spanArea col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12">
+                           <div *ngFor="let item of newValue;let i =index">
+    <label [ngClass]="{'diffrent':item===findDiffrent[i]}">{{item | prettyShowJson}}</label>
+        </div>
+    </div>
+    </label>
+</div>
+</div>
+</div>
+<div class="row m-auto col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12 pt-2">
+    <div class="item_name col-md-2 col-xl-2 col-lg-2 col-sm-12 col-lg-2">
+        <label><strong>نوع عملیات </strong></label>
+    </div>
+    <div class="infos col-md-10 col-xl-10 col-lg-10 col-sm-12 col-lg-10">
+        <div class="showMore col-md-12 col-xl-12 col-lg-12 col-sm-12 col-lg-12 containtText">
+            <label class="lbl form-group col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12 p-0">
+                        <div class="spanArea col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12">
+                           {{model.auditType}}
+                        </div>
+                    </label>
+        </div>
+    </div>
+</div>
+<div class="row m-auto col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12 pt-2">
+    <div class="item_name col-md-2 col-xl-2 col-lg-2 col-sm-12 col-lg-2">
+        <label><strong>تاریخ انجام عملیات </strong></label>
+    </div>
+    <div class="infos col-md-10 col-xl-10 col-lg-10 col-sm-12 col-lg-10">
+        <div class="showMore col-md-12 col-xl-12 col-lg-12 col-sm-12 col-lg-12 containtText">
+            <label class="lbl form-group col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12 p-0">
+                        <div class="spanArea col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12">
+                           {{model.createdOnUtc}}
+                        </div>
+                    </label>
+        </div>
+    </div>
+</div>
+</div>
+</div>

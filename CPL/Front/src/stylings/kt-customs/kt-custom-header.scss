@@ -1,0 +1,17 @@
+@import "../base/media-queries";
+
+@media (min-width: 1025px) {
+    .kt-header--fixed.kt-subheader--fixed.kt-subheader--enabled .kt-wrapper {
+        padding-top: 100px !important;
+    }
+}
+
+.breadC {
+    margin-top: -52px !important;
+}
+
+@media (max-width: 1024px) {
+    .breadC {
+        margin-top: 52px !important;
+    }
+}

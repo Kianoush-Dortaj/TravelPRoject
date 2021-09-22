@@ -1,0 +1,68 @@
+<div class="accountcontent">
+  <div class="title">
+    <h2>Account Setting</h2>
+  </div>
+  <form [formGroup]="accountSettingFG" (ngSubmit)="onSubmit()">
+    <div class="accountDispalyName">
+      <div class="item">
+        <div class="item-label">
+          <mat-label>FirstName </mat-label>
+        </div>
+        <mat-form-field appearance="outline">
+          <input formControlName="firstName" matInput type="text" />
+        </mat-form-field>
+      </div>
+
+      <div class="item">
+        <div class="item-label">
+          <mat-label>LastName </mat-label>
+        </div>
+        <mat-form-field appearance="outline">
+          <input formControlName="lastName" matInput type="text" />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="accountemail">
+      <div class="item">
+        <div class="item-label">
+          <mat-label>Email </mat-label>
+        </div>
+        <mat-form-field appearance="outline">
+          <input formControlName="email" matInput type="text" />
+        </mat-form-field>
+      </div>
+
+      <div class="item">
+        <div class="gender-selector">
+          <div class="label">
+            <label>Gender</label>
+          </div>
+          <div class="value">
+            <label>
+              <input type="radio" formControlName="gender" value="male" />
+              <i class="fal fa-male"></i>
+            </label>
+            <label>
+              <input type="radio" formControlName="gender" value="female" />
+              <i class="fal fa-female"></i>
+            </label>
+          </div>
+        </div>
+    </div>
+    </div>
+    <div class="accountemail">
+      <div class="item fullwidth">
+        <div class="item-label">
+          <mat-label>I'm Looking for </mat-label>
+        </div>
+        <mat-form-field appearance="outline">
+          <textarea formControlName="aboutMe" matInput type="text"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button mat-flat-button type="submit" color="primary">Save Change</button>
+    </div>
+  </form>
+</div>

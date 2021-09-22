@@ -1,0 +1,78 @@
+<div class="form-container">
+  <!-- begin form -->
+  <div class="form-content">
+    <div *ngIf="personalInfo.isDeleted" class="deleted-alert">
+      <span>{{ "CUSTOMER.DELETED_USER" | translate }}</span>
+    </div>
+    <form class="form" [formGroup]="changePersonalInfoFG">
+      <div class="userProfile">
+        <div class="image-container">
+          <img [src]="imgURL" (click)="openPrevieFile()" />
+        </div>
+        <div (click)="file.open()" class="uploadButton">
+          <mat-icon reverseStyle value="-143px" rtl="margin-right" ltr="margin-left"
+            >edit</mat-icon
+          >
+        </div>
+        <span style="display: none;">
+          <mat-form-field appearance="outline">
+            <ngx-mat-file-input
+              (change)="preview($event)"
+              formControlName="avatar"
+              #file
+            >
+            </ngx-mat-file-input>
+          </mat-form-field>
+        </span>
+      </div>
+
+      <div class="fullName">
+        <mat-form-field appearance="outline">
+          <mat-label>{{ "MANAGERS.FIRST_NAME" | translate }} </mat-label>
+          <input required formControlName="firstName" matInput />
+          <mat-error
+            *ngIf="f.firstName.hasError('required')"
+            [translate]="'SHARED_VALIDATE.REQIERD'"
+            [translateParams]="{ value: 'MANAGERS.FIRST_NAME' | translate }"
+          >
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>{{ "MANAGERS.LAST_NAME" | translate }} </mat-label>
+          <input required formControlName="lastName" matInput />
+          <mat-error
+            *ngIf="f.lastName.hasError('required')"
+            [translate]="'SHARED_VALIDATE.REQIERD'"
+            [translateParams]="{ value: 'MANAGERS.LAST_NAME' | translate }"
+          >
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ "MANAGERS.PHONE_NUMBER" | translate }} </mat-label>
+        <input required formControlName="phoneNumber" matInput />
+        <mat-error
+          *ngIf="f.phoneNumber.hasError('required')"
+          [translate]="'SHARED_VALIDATE.REQIERD'"
+          [translateParams]="{ value: 'MANAGERS.PHONE_NUMBER' | translate }"
+        >
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="form-footer">
+    <button [routerLink]="['/visitor']" mat-stroked-button>
+      {{ "GENERAL.BACK" | translate }}
+    </button>
+    <button
+      [promiseBtn]="subscription"
+      color="primary"
+      (click)="saveInfo()"
+      mat-raised-button
+    >
+      {{ "GENERAL.EDIT_SAVE" | translate }}
+    </button>
+  </div>
+  <!-- end form -->
+</div>

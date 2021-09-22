@@ -1,0 +1,116 @@
+<vex-secondary-toolbar current="CATEGORY">
+    <vex-breadcrumbs class="flex-auto"></vex-breadcrumbs>
+  </vex-secondary-toolbar>
+  <div class="mudole-container">
+    <div class="form-container">
+      <div class="form-header">
+        <button
+          mat-icon-button
+          [routerLink]="['/subscribe']"
+          routerLinkActive="router-link-active"
+        >
+          <mat-icon
+            PfaReverseArrow
+            rtl="arrow_forward"
+            ltr="arrow_back"
+          ></mat-icon>
+        </button>
+        <span>
+          {{ "CATEGORY.NEW_CATEGORY" | translate }}
+        </span>
+      </div>
+      <!-- begin form -->
+      <div class="form-content">
+        <form
+          class="form"
+          id="postform"
+          [formGroup]="addCurrency"
+          (ngSubmit)="onSubmit()"
+          autocomplete="off"
+        >
+          <mat-form-field appearance="outline">
+            <mat-label>{{ "CATEGORY.NAME" | translate }} </mat-label>
+            <input required formControlName="name" matInput />
+            <mat-error
+              *ngIf="f.name.hasError('required')"
+              [translate]="'SHARED_VALIDATE.REQIERD'"
+              [translateParams]="{ value: 'CATEGORY.NAME' | translate }"
+            >
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>{{ "CATEGORY.NAME" | translate }} </mat-label>
+            <input required formControlName="percent" matInput />
+            <mat-error
+              *ngIf="f.percent.hasError('required')"
+              [translate]="'SHARED_VALIDATE.REQIERD'"
+              [translateParams]="{ value: 'CATEGORY.NAME' | translate }"
+            >
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>{{ "CATEGORY.NAME" | translate }} </mat-label>
+            <input type="number" required formControlName="numberOfUse" matInput />
+            <mat-error
+              *ngIf="f.numberOfUse.hasError('required')"
+              [translate]="'SHARED_VALIDATE.REQIERD'"
+              [translateParams]="{ value: 'CATEGORY.NAME' | translate }"
+            >
+            </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline">
+            <mat-label>{{ "MANAGERS.BIRTH_DATE" | translate }} </mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker6"
+              formControlName="startDate"
+              [placeholder]="'MANAGERS.BIRTH_DATE' | translate"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker6"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker6></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>{{ "MANAGERS.BIRTH_DATE" | translate }} </mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker7"
+              formControlName="expireDate"
+              [placeholder]="'MANAGERS.BIRTH_DATE' | translate"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker7"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker7></mat-datepicker>
+          </mat-form-field>
+  
+        </form>
+      </div>
+  
+      <div class="form-footer">
+        <button [routerLink]="['/subscribe']" mat-stroked-button>
+          {{ "GENERAL.BACK" | translate }}
+        </button>
+  
+        <button
+          mat-raised-button
+          form="postform"
+          type="submit"
+          [disabled]="!addCurrency.valid"
+          color="primary"
+          [promiseBtn]="subscriptions"
+        >
+          {{ "GENERAL.SAVE" | translate }}
+        </button>
+      </div>
+      <!-- end form -->
+    </div>
+  </div>
+  

@@ -1,0 +1,27 @@
+.buttons {
+	margin-bottom: 15px;
+	display: flex;
+	justify-content: flex-end;
+
+	@include media-breakpoint('lt-sm') {
+		display: flex;
+		justify-content: unset;
+		flex-direction: column;
+		margin-top: 0;
+	}
+
+	button { 
+		box-shadow: none !important;
+		mat-icon {
+			margin-top: 5px;
+		}
+
+		@include media-breakpoint('lt-sm') {
+			button {
+				margin: 5px 0 !important;
+				padding: 5px 0;
+				width: 100%;
+			}
+		}
+	}
+}

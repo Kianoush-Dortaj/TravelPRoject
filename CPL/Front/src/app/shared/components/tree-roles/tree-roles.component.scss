@@ -1,0 +1,47 @@
+.iconColor {
+    color: #9D9FA5 !important;
+    display: flex;
+}
+
+.hover .hover-items {
+    display: flex;
+    align-items: center;
+}
+
+.label {
+    width: fit-content;
+    color: #000;
+}
+
+.add:hover {
+    color: #000000;
+}
+
+.edit:hover {
+    color: #056C99;
+}
+
+.delete:hover {
+    color: #D67C79;
+}
+
+.icon-alien {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.hover :hover {
+    cursor: pointer;
+    background-color: rgb(248, 231, 188);
+    border-radius: 5px;
+}
+
+.main-class{
+    background-color: #ffffff;
+    padding: 10px;
+    
+}
+/* .main-class button{
+    margin-bottom: 20px;
+} */

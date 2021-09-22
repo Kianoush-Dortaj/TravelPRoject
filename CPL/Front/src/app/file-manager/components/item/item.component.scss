@@ -1,0 +1,80 @@
+.item-container {
+  display: flex;
+
+  .buttons-icon {
+    .mat-icon-button {
+      height: 0 !important ;
+    }
+    display: flex;
+    border-left: 1px solid #d8d8d8;
+    padding: 11px 0;
+    .delete,
+    .type,
+    .more {
+      mat-icon {
+        color: #d0d0d0;
+        padding: 0 34px;
+        cursor: pointer;
+      }
+    }
+  }
+  .info {
+    padding: 2px 18px;
+    display: flow-root;
+    align-items: center;
+    width: 62%;
+    .info-title {
+      font-size: 14px;
+      margin-top: 7px;
+    }
+    .info-description {
+      color: #cacaca;
+      font-size: 12px;
+    }
+  }
+  .action-buttons {
+    display: flex;
+    width: 20%;
+    justify-content: space-around;
+    align-items: center;
+    .preview {
+      width: 48%;
+      background-color: #fe4848;
+      color: #fff;
+      border-radius: 11px;
+      text-align: center;
+      padding: 4px;
+    }
+    .downalod {
+      width: 48%;
+      background-color: #0c3fef;
+      color: #fff;
+      border-radius: 11px;
+      text-align: center;
+      padding: 4px;
+    }
+  }
+}
+.edit-item {
+  .edit-title {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 17px;
+    label {
+      padding: 0 7px;
+      position: absolute;
+      margin-top: -9px;
+      background-color: #fff;
+      padding-bottom: -4px;
+    }
+  }
+  .formContainer {
+    form {
+      display: flex;
+      justify-content: space-between;
+      mat-form-field {
+        width: 23%;
+      }
+    }
+  }
+}

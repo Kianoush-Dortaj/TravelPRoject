@@ -1,0 +1,14 @@
+<div class="form-content">
+  <div class="rolesContent d-flex justify-content-center mt-15 kt-mb-15">
+      <div class="d-flex role-box col-xs-6 col-sm-1 col-md-1" [class.active]="item.hasRole===true" *ngFor="let item of adminEditRole">
+          <mat-checkbox [(ngModel)]="item.hasRole">{{item.name}}
+          </mat-checkbox>
+      </div>
+  </div>
+  <div class="form-footer">
+      <button mat-raised-button (click)="updateAdminRoles()" [promiseBtn]="subscription" color="primary">{{ 'GENERAL.SAVE' | translate }}
+  </button>
+      <button [routerLink]="['/manage/list']" mat-stroked-button>{{ 'GENERAL.BACK' | translate }}
+  </button>
+  </div>
+</div>

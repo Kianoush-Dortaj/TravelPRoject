@@ -1,0 +1,116 @@
+<div class="item-container">
+  <div class="image-item">
+    <!-- <img src="./../assets/img/demo/default.png"> -->
+  </div>
+  <div class="buttons-icon">
+    <div class="delete">
+      <span *ngIf="!fileManagerConfig.playList">
+        <mat-icon (click)="delete(item.id)">delete</mat-icon>
+      </span>
+      <span *ngIf="fileManagerConfig.playList">
+        <mat-icon (click)="removeItemFromPlayList(item.id)">delete</mat-icon>
+      </span>
+    </div>
+    <div class="type"><mat-icon>audiotrack</mat-icon></div>
+    <div class="more">
+      <button
+      *ngIf="!fileManagerConfig.playList"
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button
+          *ngIf="!fileManagerConfig.playList"
+          (click)="animateMe()"
+          mat-menu-item
+        >
+          <mat-icon>edit</mat-icon>
+          <span>ویرایش</span>
+        </button>
+        <ng-template #add>
+          <button (click)="addItem(item.id)" mat-menu-item>
+            <mat-icon>queue_music</mat-icon>
+            <span>اضافه کردن به پلی لیست</span>
+          </button>
+        </ng-template>
+        <div  *ngIf="item.playListId; else add">
+          <button (click)="removeItemFromPlayList(item.id)" mat-menu-item>
+            <mat-icon>queue_music</mat-icon>
+            <span>حذف از پلی لیست ({{ item.playListId.name }})</span>
+          </button>
+        </div>
+      </mat-menu>
+    </div>
+  </div>
+  <div class="info">
+    <div class="info-title">
+      <label> {{ item.name }}</label>
+    </div>
+    <div class="info-description">
+      <label> {{ item.trackSize | convertbyte }}</label>
+    </div>
+  </div>
+  <div class="action-buttons">
+    <div class="preview" (click)="Preview(item.id)">
+      پیش نمایش
+    </div>
+    <div class="downalod">
+      دانلود
+    </div>
+  </div>
+</div>
+<div [@myfirstanimation]="state" class="edit-item">
+  <div class="edit-title">
+    <hr />
+  </div>
+  <div class="formContainer">
+    <form [formGroup]="editFromFG">
+      <!-- isCorrect -->
+      <mat-form-field appearance="outline">
+        <mat-label>{{ "ALBUM.NAME" | translate }} </mat-label>
+        <input required formControlName="name" matInput />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ "ALBUM.POSTER" | translate }}</mat-label>
+        <mat-icon matSuffix>image</mat-icon>
+        <ngx-mat-file-input
+          appearance="outline"
+          type="file"
+          formControlName="trackPoster"
+          [placeholder]="'ALBUM.POSTER' | translate"
+        >
+        </ngx-mat-file-input>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{ "ALBUM.POSTER" | translate }}</mat-label>
+        <mat-icon matSuffix>image</mat-icon>
+        <ngx-mat-file-input
+          appearance="outline"
+          type="filePoster"
+          formControlName="trackProfile"
+          [placeholder]="'ALBUM.PROFILE' | translate"
+        >
+        </ngx-mat-file-input>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>{{ "ALBUM.POSTER" | translate }}</mat-label>
+        <mat-icon matSuffix>image</mat-icon>
+        <ngx-mat-file-input
+          appearance="outline"
+          type="file"
+          formControlName="trackFile"
+          [placeholder]="'ALBUM.POSTER' | translate"
+        >
+        </ngx-mat-file-input>
+      </mat-form-field>
+      <button (click)="onSubmit()">
+        <mat-icon matSuffix>save</mat-icon>
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,139 @@
+.searchPanel {
+  width: 23%;
+  @include media-breakpoint("lt-md") {
+    display:none;
+  }
+  height: fit-content;
+  top: 11px;
+  margin-top: 16px;
+  border-radius: 5px;
+  .searchBox {
+    background-color: #fff;
+    border-radius: 5px;
+    margin-top: 16px;
+    padding: 19px 14px;
+    box-shadow: 0px 4px 16px #aaaaaa;
+    .headerSearch {
+      padding-bottom: 10px;
+      border-bottom: 1px solid #d4d4d4;
+      display: flex;
+      .icon {
+        padding: 0 5px;
+      }
+      .name {
+      }
+    }
+    .content {
+      padding-top: 15px;
+    }
+    .dateSearch {
+      display: flex;
+      justify-content: space-around;
+
+      .from {
+        width: 45%;
+        input {
+          //   width: 100%;
+          //   border-radius: 5px;
+          //   border: 1px solid #e0e0e0;
+          //   padding: 5px 0;
+          //   text-align: center;
+        }
+      }
+      .to {
+        width: 45%;
+        input {
+          //   width: 100%;
+          //   border-radius: 5px;
+          //   border: 1px solid #e0e0e0;
+          //   padding: 5px 0;
+          //   text-align: center;
+        }
+      }
+    }
+    .travelBy {
+      .item {
+        padding: 7px 0;
+        display: flex;
+        .item_checkbox {
+          padding: 0 10px;
+        }
+        .item_value {
+          justify-content: space-around;
+          display: flex;
+          .item_value_label {
+            padding: 0 8px;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+    .searchInput {
+      width: 100%;
+      white-space: nowrap;
+      vertical-align: middle;
+      //   display: table-cell;
+      .prefix {
+        display: flex;
+        align-items: center;
+      }
+      span {
+        border: 1px solid #c7c7c7;
+        color: #b7b7b7;
+        border-radius: 5px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-right: none;
+        padding: 6px 10px;
+      }
+      input {
+        width: 92%;
+        border-radius: 5px;
+        border: 1px solid #d4d4d4;
+        border-left: none;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        margin-top: 8px;
+        padding: 9px 0;
+        outline: none;
+        margin-bottom: 8px;
+      }
+    }
+    .scrollContent {
+      max-height: 207px;
+      overflow: scroll;
+      overflow-x: hidden;
+    }
+  }
+}
+
+.mobileSearchButton{
+  width: 45%;
+  background:red;
+  height: 200px;
+  border-radius: 16px;
+    width: 146px;
+    background: #ff7804;
+    height: 43px;
+    display:none;
+  @include media-breakpoint("lt-md") {
+    display:block;
+  }
+}
+
+.circleIcon {
+  border-radius: 60% !important;
+  width: 13px  !important;
+  border: 1px solid #c7c7c7  !important;
+  color: #b7b7b7  !important;
+  /* border-radius: 5px; */
+  /* border-top-right-radius: 0; */
+  /* border-bottom-right-radius: 0; */
+  /* border-right: none; */
+  padding: 6px 10px  !important;
+  display: flex  !important;
+  align-items: center  !important;
+  justify-content: center  !important;
+  height: 21px  !important;
+  margin-right: 10px;
+}

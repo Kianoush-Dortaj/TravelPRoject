@@ -1,0 +1,173 @@
+<div class="form-container">
+  <div class="form-content">
+    <!-- <div *ngIf="accountInfo.isDeleted" class="deleted-alert">
+      <span>{{ "CUSTOMER.DELETED_USER" | translate }}</span>
+    </div> -->
+    <div class="account-container">
+      <div class="account-form">
+        <div class="account-form-header">
+          <label>{{ "MANAGERS.ACCOUNT_INFO" | translate }}</label>
+        </div>
+        <div class="account-form-container">
+          <form [formGroup]="changeAccountInfoFG">
+            <mat-form-field appearance="outline">
+              <mat-label>{{ "MANAGERS.USER_NAME" | translate }} </mat-label>
+              <input required formControlName="userName" matInput />
+              <mat-error
+                *ngIf="f.userName.hasError('required')"
+                [translate]="'SHARED_VALIDATE.REQIERD'"
+                [translateParams]="{ value: 'MANAGERS.USER_NAME' | translate }"
+              >
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label
+                >{{ "MANAGERS.CONFIRM_USER_NAME" | translate }}
+              </mat-label>
+              <input formControlName="confirmuserName" matInput />
+              <mat-error
+                *ngIf="f.confirmuserName.hasError('required')"
+                [translate]="'SHARED_VALIDATE.REQIERD'"
+                [translateParams]="{
+                  value: 'MANAGERS.CONFIRM_USER_NAME' | translate
+                }"
+              >
+              </mat-error>
+              <mat-error *ngIf="f.confirmuserName.hasError('mustMatch')">
+                {{
+                  "SHARED_VALIDATE.NOT_MATCHED_FORM"
+                    | translate
+                      : {
+                          first: "MANAGERS.USER_NAME" | translate,
+                          second: "MANAGERS.CONFIRM_USER_NAME" | translate
+                        }
+                }}
+              </mat-error>
+            </mat-form-field>
+
+            <mat-slide-toggle
+              class="kt-mt-15"
+              color="primary"
+              formControlName="isActive"
+            >
+              {{ "MANAGERS.ACTIVE" | translate }}</mat-slide-toggle
+            >
+
+            <mat-slide-toggle
+            class="kt-mt-15"
+            color="primary"
+            formControlName="isWriter"
+          >
+            {{ "MANAGERS.IS_WERITER" | translate }}</mat-slide-toggle
+          >
+          </form>
+        </div>
+      </div>
+      <!-- <div class="archive-list">
+        <div class="arcihve-header">
+          {{ "GENERAL.ACTIVITY_INFO" | translate }}
+        </div>
+        <div class="archive-content">
+          <div class="items">
+            <div class="item-label">
+              {{ "MANAGERS.LAST_CHANGE_DATA" | translate }}
+            </div>
+            <div class="item-value">
+              <pfa-date-time-format
+                [date]="accountInfo.lastChangeDateUtc"
+                [row]="true"
+              ></pfa-date-time-format>
+            </div>
+          </div>
+          <div class="items">
+            <div class="item-label">
+              {{ "MANAGERS.LAST_CHANGED_BY" | translate }}
+            </div>
+            <div class="item-value">
+              <pfa-user-field
+                [displayName]="accountInfo.lastChangedBy"
+                [username]="accountInfo.lastChangeByEmail"
+                [row]="true"
+              ></pfa-user-field>
+            </div>
+          </div>
+          <div class="items">
+            <div class="item-label">
+              {{ "MANAGERS.LAST_LOGIN_DATE" | translate }}
+            </div>
+            <div class="item-value">
+              <pfa-date-time-format
+                [date]="accountInfo.lastLoginDateUtc"
+                [row]="true"
+              ></pfa-date-time-format>
+            </div>
+          </div>
+          <div class="items">
+            <div class="item-label">
+              {{ "MANAGERS.LAST_LOGIN_IP" | translate }}
+            </div>
+            <div class="item-value">
+              {{ accountInfo.lastLoginIp }}
+            </div>
+          </div>
+          <div class="items">
+            <div class="item-label">
+              {{ "MANAGERS.LAST_VISIT_DATE" | translate }}
+            </div>
+            <div class="item-value">
+              <pfa-date-time-format
+                [date]="accountInfo.lastVisitedDateUtc"
+                [row]="true"
+              ></pfa-date-time-format>
+            </div>
+          </div>
+          <div class="items">
+            <div class="item-label">
+              {{ "MANAGERS.CREATED_BY" | translate }}
+            </div>
+            <div class="item-value">
+              <pfa-user-field
+                [displayName]="accountInfo.createdBy"
+                [username]="accountInfo.createdByEmail"
+                [row]="true"
+              ></pfa-user-field>
+            </div>
+          </div>
+          <div class="items">
+            <div class="item-label">
+              {{ "MANAGERS.REGISTER_DATE" | translate }}
+            </div>
+            <div class="item-value">
+              <pfa-date-time-format
+                [date]="accountInfo.registerDateUtc"
+                [row]="true"
+              ></pfa-date-time-format>
+            </div>
+          </div>
+          <div class="items">
+            <div class="item-label">
+              {{ "MANAGERS.REGISTER_IP" | translate }}
+            </div>
+            <div class="item-value">
+              {{ accountInfo.registerIp }}
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+  <div class="form-footer">
+    <button [routerLink]="['/managers']" mat-stroked-button>
+      {{ "GENERAL.BACK" | translate }}
+    </button>
+    <button
+      (click)="saveInfo()"
+
+      [promiseBtn]="subscription"
+      color="primary"
+      mat-raised-button
+    >
+      {{ "GENERAL.EDIT_SAVE" | translate }}
+    </button>
+  </div>
+</div>

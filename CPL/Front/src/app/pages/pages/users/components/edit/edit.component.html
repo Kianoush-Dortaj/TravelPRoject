@@ -1,0 +1,33 @@
+<vex-secondary-toolbar current="MANAGERS">
+  <vex-breadcrumbs class="flex-auto"></vex-breadcrumbs>
+</vex-secondary-toolbar>
+<div class="mudole-container">
+  <div class="form-container">
+    <mat-tab-group>
+      <mat-tab [label]="'MANAGERS.ACCOUNT_INFO' | translate">
+        <ng-template matTabContent>
+          <change-account-info [accountInfo]="accountIfoEditModel"></change-account-info>
+        </ng-template>
+      </mat-tab>
+     <mat-tab [label]="'MANAGERS.PERSONAL_INFO' | translate">
+        <ng-template matTabContent>
+          <change-personal-info [personalInfo]="personalInfoEditModel"></change-personal-info>
+        </ng-template>
+      </mat-tab>
+       <mat-tab [label]="'MANAGERS.CHANGE_ROLE' | translate">
+        <ng-template matTabContent>
+          <change-role
+            [allRoles]="rolesList"
+            [userRole]="personalInfoEditModel.userRole[0].role"
+            [userId]="accountIfoEditModel.id"
+          ></change-role>
+        </ng-template>
+      </mat-tab>
+      <mat-tab [label]="'MANAGERS.CHANGE_PASSWORD' | translate">
+        <ng-template matTabContent>
+          <change-password  [userId]="accountIfoEditModel.id"></change-password>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

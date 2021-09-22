@@ -1,0 +1,94 @@
+<div class="mudole-container">
+  <div class="file-container">
+    <div class="addButton">
+      <button (click)="addForm()">
+        <span>ثبت فایل جدید</span>
+        <mat-icon aria-hidden="false" aria-label="Example home icon"
+          >add</mat-icon
+        >
+      </button>
+    </div>
+
+    <form [formGroup]="uploadFormGroupFG">
+      <div
+        formArrayName="items"
+        class="tracks"
+        *ngFor="
+          let project of uploadFormGroupFG.get('items')['controls'];
+          let i = index
+        "
+      >
+        <div class="file-upload-form">
+          <div class="closeDiv">
+            <mat-icon
+              (click)="removeTracks(i)"
+              aria-hidden="false"
+              aria-label="Example home icon"
+              >close</mat-icon
+            >
+          </div>
+          <ng-container [formGroupName]="i">
+            <div class="first-srction">
+              <!-- isCorrect -->
+              <mat-form-field appearance="outline">
+                <mat-label>{{ "ALBUM.NAME" | translate }} </mat-label>
+                <input required formControlName="name" matInput />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>{{ "ALBUM.POSTER" | translate }}</mat-label>
+                <mat-icon matSuffix>image</mat-icon>
+                <ngx-mat-file-input
+                  appearance="outline"
+                  type="file"
+                  formControlName="trackPoster"
+                  [placeholder]="'ALBUM.POSTER' | translate"
+                >
+                </ngx-mat-file-input>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>{{ "ALBUM.POSTER" | translate }}</mat-label>
+                <mat-icon matSuffix>image</mat-icon>
+                <ngx-mat-file-input
+                  appearance="outline"
+                  type="filePoster"
+                  formControlName="trackProfile"
+                  [placeholder]="'ALBUM.PROFILE' | translate"
+                >
+                </ngx-mat-file-input>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>{{ "ALBUM.POSTER" | translate }}</mat-label>
+                <mat-icon matSuffix>image</mat-icon>
+                <ngx-mat-file-input
+                  appearance="outline"
+                  type="file"
+                  formControlName="trackFile"
+                  [placeholder]="'ALBUM.POSTER' | translate"
+                >
+                </ngx-mat-file-input>
+              </mat-form-field>
+              <button (click)="onSubmit(i)">
+                <mat-icon matSuffix>cloud_upload</mat-icon>
+              </button>
+            </div>
+            <div class="second-section"></div>
+          </ng-container>
+        </div>
+      </div>
+    </form>
+    <mat-tab-group>
+      <mat-tab label="فایل ها">
+        <div class="tabel-items">
+          <div *ngIf="listModel.length > 0" class="items">
+            <div *ngFor="let item of listModel" class="item">
+              <item [parentId]="parentId" [item]="item" ></item>
+            </div>
+          </div>
+          <no-data-tabel *ngIf="listModel.length <= 0"></no-data-tabel>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

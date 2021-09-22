@@ -1,0 +1,55 @@
+<form [formGroup]="addGalleryFG" class="form">
+  <div class="formAddGallery inputs">
+    <div class="title half">
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input formControlName="title" matInput #title maxlength="17" />
+        <mat-hint align="start"></mat-hint>
+        <mat-hint align="end">{{ title.value.length }} / 17</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="description half">
+      <mat-form-field appearance="outline">
+        <mat-label>Desciption</mat-label>
+        <input formControlName="description" matInput #description maxlength="28" />
+        <mat-hint align="start"> </mat-hint>
+        <mat-hint align="end">{{ description.value.length }} / 28</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="half">
+      <search-place [setLocation]="this.model" (location)="SetLocation($event)"></search-place>
+    </div>
+    <div class="image">
+      <div type="button" (click)="onClickForUpload()" class="m-btn">
+        <i class="fal fa-camera-retro"></i>
+      </div>
+    </div>
+    <div class="button">
+      <button (click)="SendItem()">Add To Gallery</button>
+    </div>
+  </div>
+</form>
+<div class="galleryItems">
+  <div *ngFor="let item of galleryItems" class="item"
+    (click)="lightbox.open(0, 'lightbox', { panelClass: 'fullscreen' })">
+    <div (click)="setItem(item)" class="editor">
+      <i class="fal fa-pencil"></i>
+    </div>
+    <img [src]="appConfig.apiEndpoint+'/gallery/GetImageGallery/'+item.id" />
+    <div class="item_description">
+      <div class="title">
+        <label>{{ item.title }}</label>
+      </div>
+      <div class="description">
+        <label>{{ item.description }}</label>
+      </div>
+      <!-- <hr /> -->
+      <div class="place">
+        <label>{{ item.country }} - {{ item.city }}</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="fileUpload" name="fileUpload" multiple="multiple" (change)="uploadGalleryImage($event)"
+  style="display: none" />

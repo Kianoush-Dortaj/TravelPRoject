@@ -1,0 +1,30 @@
+.setting {
+  justify-content:space-between;
+  display: flex;
+  background-color: #f9fbfe;
+  border-radius: 7px;
+  padding: 15px;
+  line-height: 2;
+  .settingMenu{
+    width: 27%;
+    .settingItems{
+      padding-top: 15px;
+      .settingItem {
+        border-radius: 12px;
+        padding: 0 47px;
+        cursor: pointer;
+        &:hover {
+          font-weight: 500;
+          background-color: #ddebfe;
+        }
+        &:Active{
+          font-weight: 500;
+          background-color: #ddebfe;
+        }
+      }
+    }
+  }
+  .settingContent{
+    width: 94%;
+  }
+}

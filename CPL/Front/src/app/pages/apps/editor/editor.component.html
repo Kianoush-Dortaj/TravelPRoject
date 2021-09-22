@@ -1,0 +1,12 @@
+<vex-secondary-toolbar current="WYSIWYG Editor">
+  <vex-breadcrumbs></vex-breadcrumbs>
+</vex-secondary-toolbar>
+
+
+<div class="p-gutter container">
+  <div class="card">
+    <quill-editor @fadeInUp
+                  [formControl]="form"
+                  [styles]="{ flex: '1 1 auto' }"></quill-editor>
+  </div>
+</div>

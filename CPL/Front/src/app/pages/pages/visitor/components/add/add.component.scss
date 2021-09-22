@@ -1,0 +1,46 @@
+@import "src/stylings/media-queries.scss";
+
+.seprateForm {
+  .label {
+    margin-bottom: 14px;
+    > label {
+      color: #000;
+    }
+  }
+  .items {
+    padding: 0 35px;
+    @include media-breakpoint("lt-xs") {
+      padding: 0 7px;
+    }
+    .role-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      @include media-breakpoint("lt-xs") {
+        display: block;
+        justify-content: space-between;
+      }
+      .role-box-items {
+        @include media-breakpoint("lt-xs") {
+          width: 50%;
+        }
+      }
+    }
+    .fullName {
+      display: flex;
+      justify-content: space-between;
+      @include media-breakpoint("lt-md") {
+        display: block;
+      }
+      >mat-form-field{
+        width: 48%;
+        @include media-breakpoint("lt-md") {
+          width: 100%;
+        }
+      }
+    }
+    >mat-slide-toggle{
+        margin-top: 71px;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+.iconColor {
+    color: #9D9FA5 !important;
+}
+
+.hover .hover-items {
+    display: flex;
+    align-items: center;
+}
+
+.label {
+    width: fit-content;
+    color: #000;
+}
+
+.icon-alien {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.hover :hover {
+    cursor: pointer;
+    background-color: rgb(248, 231, 188);
+    border-radius: 5px;
+}

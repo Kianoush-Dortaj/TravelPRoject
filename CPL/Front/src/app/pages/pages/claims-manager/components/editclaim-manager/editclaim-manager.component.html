@@ -1,0 +1,53 @@
+<vex-secondary-toolbar current="CLAIM_GROUP_MANAGER">
+    <vex-breadcrumbs class="flex-auto"></vex-breadcrumbs>
+  
+    <!-- <button class="ml-2" color="primary" mat-icon-button type="button">
+      <mat-icon [icIcon]="icMoreVert"></mat-icon>
+    </button> -->
+  </vex-secondary-toolbar>
+  <div class="mudole-container">
+<div class="form-container">
+
+    <div class="form-header">
+
+        <button mat-icon-button [routerLink]="['/claims-manager/list']" routerLinkActive="router-link-active">
+			<mat-icon>arrow_forward</mat-icon>
+		</button>
+        <span>
+			{{ 'CLAIMS_MANAGER.EDIT_CLAIM_GROUP' | translate }}</span>
+
+    </div>
+    <!-- begin form -->
+    <div class="form-content">
+        <form class="form" id="editRoleClaimFG " [formGroup]="editRoleClaimFG">
+
+            <mat-form-field class="mat-form-field-fluid" appearance="outline">
+                <mat-label>{{'CLAIMS_MANAGER.TITLE' | translate}} *</mat-label>
+                <input matInput formControlName="name" type="text" [placeholder]="'CLAIMS_MANAGER.TITLE' | translate">
+                <mat-error *ngIf="editRoleClaimFG.get('name').errors?.required">
+                    {{ 'CLAIMS_MANAGER.VALIDATION.REQUIRED.TITLE' | translate }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="mat-form-field-fluid" appearance="outline">
+                <mat-label>{{'CLAIMS_MANAGER.TITLE' | translate}} *</mat-label>
+                <input matInput formControlName="permissionId" type="text" [placeholder]="'CLAIMS_MANAGER.TITLE' | translate">
+                <mat-error *ngIf="editRoleClaimFG.get('permissionId').errors?.required">
+                    {{ 'CLAIMS_MANAGER.VALIDATION.REQUIRED.TITLE' | translate }}</mat-error>
+            </mat-form-field>
+
+        </form>
+    </div>
+
+    <div class="form-footer">
+
+        <button [routerLink]="['/claims-manager/list']" mat-stroked-button>{{ 'GENERAL.BACK' | translate }}
+        </button>
+
+        <button mat-raised-button (click)="onSubmit()" [disabled]="!editRoleClaimFG.valid" [promiseBtn]="subscription" color="primary">
+			{{ 'GENERAL.SAVE' | translate }}
+		</button>
+
+    </div>
+    <!-- end form -->
+</div>
+</div>

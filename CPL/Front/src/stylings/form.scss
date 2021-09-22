@@ -1,0 +1,113 @@
+form {
+    .mat-flat-button {
+        margin-left: auto;
+        width: 148px;
+        height: 48px;
+        border-radius: 5px;
+        transition: 0.7s;
+    }
+    .mat-form-field {
+        width: 100%;
+        margin-top: 12px;
+        font-family: Muli;
+    }
+    .mat-hint {
+        font-family: Muli;
+        font-size: $fs-xs;
+    }
+}
+
+.form-sm {
+    @include font-size($fs-sm, null, null);
+    @include media-breakpoint('lt-xs') {
+        .mat-form-field {
+            margin-bottom: 25px;
+        }
+    }
+    .mat-error {
+        margin-top: 22px;
+    }
+}
+
+.carded {
+    .body {
+        form {
+            width: 60%;
+            @include media-breakpoint('lt-lg') {
+                width: 90%
+            }
+            @include media-breakpoint('lt-xs') {
+                margin-top: 5px;
+            }
+        }
+    }
+}
+
+.body {
+    padding: 20px 15px;
+}
+
+.files-upload {
+    display: flex;
+    height: 35px;
+    flex-direction: column;
+    height: unset;
+    .select-file {
+        flex: 1;
+        border: 1px dashed;
+        border-radius: 5px;
+        display: flex;
+        width: 50%;
+        align-items: center;
+        padding: 7px 10px;
+        margin-top: 12px;
+        @include media-breakpoint("lt-sm") {
+            width: 100%;
+        }
+        .icon-upload {
+            font-size: 20px;
+            margin: 0 6px;
+        }
+        .icon-trash {
+            font-size: $fs-md;
+            cursor: pointer;
+            margin-left: auto;
+            transition: 0.5s;
+            &:hover {
+                transform: rotate(20deg);
+            }
+        }
+    }
+    button {
+        border: 1px solid;
+        font-family: Muli-SemiBold;
+        line-height: 30px;
+        height: 36px;
+        width: 134px;
+    }
+    .mat-button-wrapper>* {
+        vertical-align: unset;
+    }
+}
+
+.request-form {
+    .mat-form-field {
+        width: 100%;
+        margin-top: 0;
+        margin-bottom: 24px;
+    }
+    .mat-form-field.last {
+        margin-bottom: 0;
+    }
+    .mat-form-field-wrapper {
+        padding-bottom: 0 !important;
+    }
+    .mat-form-field-wrapper {
+        margin: 0 !important;
+    }
+    textarea {
+        @include media-breakpoint('lt-md') {
+            height: 89px;
+        }
+    }
+}

@@ -1,0 +1,16 @@
+<span style="width: 230%;" *ngIf="date !== null; else slash">
+  <div class="d-time" [ngClass]="{ row: row }">
+    <div class="date" [ngClass]="{ row: row }">
+      <mat-icon>date_range</mat-icon
+      ><label [ngClass]="{ differ: differ }">{{ findLanguage(date) }}</label>
+    </div>
+    <div class="time" [ngClass]="{ row: row }">
+      <mat-icon [ngClass]="{ mgr: row }">access_time</mat-icon
+      >
+      <label [ngClass]="{ differ: differ }">{{ date | jalali: "time" }}</label>
+    </div>
+  </div>
+</span>
+<ng-template #slash>
+  <span>-</span>
+</ng-template>

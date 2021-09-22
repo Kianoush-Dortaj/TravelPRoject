@@ -1,0 +1,12 @@
+<div  [ngClass]="{'row':row}"  *ngIf="displayName !== null; else slash">
+  <div class="displayName">
+    <mat-icon>person</mat-icon> {{ displayName }}
+  </div>
+
+  <div *ngIf="username !== null" class="username-box">
+    <mat-icon>mail</mat-icon> {{ username }}
+  </div>
+</div>
+<ng-template #slash>
+  <span>-</span>
+</ng-template>

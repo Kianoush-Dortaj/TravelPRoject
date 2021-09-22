@@ -1,0 +1,63 @@
+<!-- <div class=" col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12 p-0 dialog">
+    <div class="topbar col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12">
+        <div class="detail-title">
+            <label>جزئیات</label>
+        </div>
+        <span>
+            <i (click)="close()" class="fas fa-times"></i>
+        </span>
+    </div>
+    <div class=" mian-content form-inline content col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12 pt-2 pb-3">
+        <div *ngFor="let item of globalModel;let i=index"
+            class="form-group justify-content-start col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12 pt-2">
+            <div class="col-md-2 col-xl-2 col-lg-2 col-sm-12 col-lg-2">
+                <label><strong>{{item.name | translate }} </strong></label>
+            </div>
+            <div *ngIf="!item.isDate && !item.isBoolean && !item.isImage"
+                class="showMore col-md-9 col-xl-9 col-lg-9 col-sm-12 col-lg-9 containtText">
+                <label class="lbl form-group col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12 p-0" [id]="'lbl'+i">
+                    <div class="spanArea col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12" [id]="'spanArea'+i">
+                        {{item.value}}
+                    </div>
+                    <div (click)="More(i)" [id]="'showMoreBtn'+i"
+                        class="showMoreBtn hiddenShowMore text-center col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12 p-3">
+                    </div>
+                </label>
+            </div>
+            <div *ngIf="item.isBoolean" class=" col-md-9 col-xl-9 col-lg-9 col-sm-12 col-lg-9 containtText">
+                <label class="lbl" *ngIf="item.value && !item.isDate">
+                    <span>
+                        <kt-check-box [value]="item.value"></kt-check-box>
+                    </span>
+                </label>
+                <label class="lbl" *ngIf="!item.value && !item.isDate">
+                    <span> <kt-check-box [value]="item.value"></kt-check-box> </span>
+                </label>
+            </div>
+            <div *ngIf="item.isImage" class=" col-md-9 col-xl-9 col-lg-9 col-sm-12 col-lg-9 containtText">
+                <label class="lbl" *ngIf="item.value && !item.isDate">
+                    <span (click)="openDialog(item.id)" class="show-img-box">
+                        <i class="fa fa-search"></i>
+                        {{'POST.PREVIEW' | translate}}
+                    </span>
+                </label>
+            </div>
+            <div *ngIf="item.isDate && item.value!==null" class=" col-md-9 col-xl-9 col-lg-9 col-sm-12 col-lg-9 containtText">
+                <label class="lbl"
+                    *ngIf="item.isDate && lang!=='fa'"><span>{{item.value | date: 'dd/MM/yyyy hh:mm'}}</span></label>
+                <label class="lbl" *ngIf="item.isDate && lang==='fa'"><span>{{ item.value | jalali }}</span> </label>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="showMore"
+        class="buttonShow form-inline content col-md-12 col-xl-12 col-sm-12 col-xl-12 col-lg-12 pt-2 pb-3">
+        <div class="col-md-2 col-xl-2 col-lg-2 col-sm-12 col-lg-2">
+
+        </div>
+        <div class="btnShow col-md-9 col-xl-9 col-lg-9 col-sm-12 col-lg-9">
+            <button mat-button color="primary" (click)="published()">{{'DIALOG_PREVIEW.SKIP' | translate}}</button>
+            <button mat-raised-button color="accent"
+                (click)="published()">{{'DIALOG_PREVIEW.PUBLISH' | translate}}</button>
+        </div>
+    </div>
+</div> -->

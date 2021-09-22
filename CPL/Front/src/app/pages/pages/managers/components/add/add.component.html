@@ -1,0 +1,156 @@
+<vex-secondary-toolbar current="MANAGERS">
+  <vex-breadcrumbs class="flex-auto"></vex-breadcrumbs>
+</vex-secondary-toolbar>
+<div class="mudole-container">
+  <div class="form-container">
+    <div class="form-header">
+      <button
+        mat-icon-button
+        [routerLink]="['/managers']"
+        routerLinkActive="router-link-active"
+      >
+        <mat-icon
+          PfaReverseArrow
+          rtl="arrow_forward"
+          ltr="arrow_back"
+        ></mat-icon>
+      </button>
+      <span>
+        {{ "MANAGERS.NEW_MANAGERS" | translate }}
+      </span>
+    </div>
+    <!-- begin form -->
+    <div class="form-content">
+      <form
+        class="form"
+        id="postform"
+        [formGroup]="addManagerFG"
+        (ngSubmit)="onSubmit()"
+        autocomplete="off"
+      >
+        <div class="seprateForm">
+          <div class="label">
+            <label>{{ "MANAGERS.ACCOUNT_INFO" | translate }}</label>
+          </div>
+          <div class="items forign-lang-input">
+            <mat-form-field appearance="outline">
+              <mat-label>{{ "MANAGERS.USER_NAME" | translate }} </mat-label>
+              <input required formControlName="email" matInput />
+              <mat-error
+                *ngIf="f.email.hasError('required')"
+                [translate]="'SHARED_VALIDATE.REQIERD'"
+                [translateParams]="{ value: 'MANAGERS.USER_NAME' | translate }"
+              >
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>{{ "MANAGERS.PASSWORD" | translate }} </mat-label>
+              <input required type="password" formControlName="password" matInput />
+              <mat-error
+              *ngIf="f.password.hasError('required')"
+              [translate]="'SHARED_VALIDATE.REQIERD'"
+              [translateParams]="{ value: 'MANAGERS.PASSWORD' | translate }"
+            >
+            </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="seprateForm">
+          <div class="label">
+            <label>{{ "MANAGERS.PERSONAL_INFO" | translate }}</label>
+          </div>
+          <div class="items">
+            <div class="fullName">
+              <mat-form-field appearance="outline">
+                <mat-label>{{ "MANAGERS.FIRST_NAME" | translate }} </mat-label>
+                <input required formControlName="firstName" matInput />
+                <mat-error
+                *ngIf="f.firstName.hasError('required')"
+                [translate]="'SHARED_VALIDATE.REQIERD'"
+                [translateParams]="{ value: 'MANAGERS.FIRST_NAME' | translate }"
+              >
+              </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>{{ "MANAGERS.LAST_NAME" | translate }} </mat-label>
+                <input required formControlName="lastName" matInput />
+                <mat-error
+                *ngIf="f.lastName.hasError('required')"
+                [translate]="'SHARED_VALIDATE.REQIERD'"
+                [translateParams]="{ value: 'MANAGERS.LAST_NAME' | translate }"
+              >
+              </mat-error>
+              </mat-form-field>
+            </div>
+
+            <mat-form-field appearance="fill">
+              <mat-label>{{ "MANAGERS.GENDER" | translate }}</mat-label>
+              <mat-select required formControlName="gender">
+                <mat-option
+                  *ngFor="let item of gender | enumToArray"
+                  [value]="item"
+                  selected
+                >
+                  {{ "ENUMS." + item | translate }}
+                </mat-option>
+              </mat-select>
+              <mat-error
+                *ngIf="f.gender.hasError('required')"
+                [translate]="'SHARED_VALIDATE.DROPDOWN_REQIERD'"
+                [translateParams]="{ value: 'MANAGERS.GENDER' | translate }"
+              >
+              </mat-error>
+            </mat-form-field>
+
+            
+            <mat-form-field appearance="outline">
+              <mat-label>{{ "MANAGERS.PHONE_NUMBER" | translate }} </mat-label>
+              <input required class="input_direction" formControlName="phoneNumber" matInput />
+              <mat-error
+              *ngIf="f.phoneNumber.hasError('required')"
+              [translate]="'SHARED_VALIDATE.REQIERD'"
+              [translateParams]="{ value: 'MANAGERS.PHONE_NUMBER' | translate }"
+            >
+            </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+
+            <mat-slide-toggle
+              class="kt-mt-15"
+              color="primary"
+              formControlName="isActive"
+            >
+              {{ "MANAGERS.ACTIVE" | translate }}</mat-slide-toggle
+            >
+            <mat-slide-toggle
+            class="kt-mt-15"
+            color="primary"
+            formControlName="isWriter"
+          >
+            {{ "MANAGERS.IS_WERITER" | translate }}</mat-slide-toggle
+          >
+      </form>
+    </div>
+
+    <div class="form-footer">
+      <button [routerLink]="['/managers']" mat-stroked-button>
+        {{ "GENERAL.BACK" | translate }}
+      </button>
+
+      <button
+        mat-raised-button
+        form="postform"
+        type="submit"
+        [disabled]="!addManagerFG.valid"
+        color="primary"
+        [promiseBtn]="subscriptions"
+      >
+        {{ "GENERAL.SAVE" | translate }}
+      </button>
+    </div>
+    <!-- end form -->
+  </div>
+</div>

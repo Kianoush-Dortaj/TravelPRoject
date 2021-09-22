@@ -1,0 +1,29 @@
+
+
+.confirmButton {
+  button {
+    width: 50% !important;
+  }
+
+  button:nth-child(1) {
+    border-bottom-right-radius: 0;
+  }
+
+  button:nth-child(2) {
+    border-bottom-left-radius: 0;
+    background-color: #109200;
+  }
+}
+
+.Accepted {
+  background-color: #109200 !important;
+
+}
+
+.Rejected {
+  background-color: #a00000 !important;
+}
+
+.Pendding {
+  background-color: #da5617 !important;
+}

@@ -1,0 +1,74 @@
+<vex-secondary-toolbar current="CATEGORY">
+  <vex-breadcrumbs class="flex-auto"></vex-breadcrumbs>
+</vex-secondary-toolbar>
+<div class="mudole-container">
+  <div class="form-container">
+    <div class="form-header">
+      <button
+        mat-icon-button
+        [routerLink]="['/travel-type']"
+        routerLinkActive="router-link-active"
+      >
+        <mat-icon
+          PfaReverseArrow
+          rtl="arrow_forward"
+          ltr="arrow_back"
+        ></mat-icon>
+      </button>
+      <span>
+        {{ "CATEGORY.EDIT_CATEGORY" | translate }}
+      </span>
+    </div>
+    <!-- begin form -->
+    <div class="form-content">
+      <form
+        class="form"
+        id="postform"
+        [formGroup]="travelTypeFG"
+        (ngSubmit)="onSubmit()"
+        autocomplete="off"
+      >
+        <mat-form-field appearance="outline">
+          <mat-label>{{ "CATEGORY.NAME" | translate }} </mat-label>
+          <input required formControlName="name" matInput />
+          <mat-error
+            *ngIf="f.name.hasError('required')"
+            [translate]="'SHARED_VALIDATE.REQIERD'"
+            [translateParams]="{ value: 'CATEGORY.NAME' | translate }"
+          >
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>{{ "CATEGORY.NAME" | translate }} </mat-label>
+          <input required formControlName="icon" matInput />
+          <mat-error
+            *ngIf="f.icon.hasError('required')"
+            [translate]="'SHARED_VALIDATE.REQIERD'"
+            [translateParams]="{ value: 'CATEGORY.NAME' | translate }"
+          >
+          </mat-error>
+        </mat-form-field>
+
+      </form>
+    </div>
+
+    <div class="form-footer">
+      <button [routerLink]="['/travel-type']" mat-stroked-button>
+        {{ "GENERAL.BACK" | translate }}
+      </button>
+
+      <button
+        mat-raised-button
+        form="postform"
+        type="submit"
+        [disabled]="!travelTypeFG.valid"
+        color="primary"
+        [promiseBtn]="subscriptions"
+      >
+        {{ "GENERAL.SAVE" | translate }}
+      </button>
+    </div>
+    <!-- end form -->
+  </div>
+</div>

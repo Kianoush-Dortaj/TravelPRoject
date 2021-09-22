@@ -1,0 +1,69 @@
+<vex-secondary-toolbar current="ROLES_MANAGER">
+    <vex-breadcrumbs class="flex-auto"></vex-breadcrumbs>
+  
+    <!-- <button class="ml-2" color="primary" mat-icon-button type="button">
+        <mat-icon [icIcon]="icMoreVert"></mat-icon>
+      </button> -->
+  </vex-secondary-toolbar>
+<div class="mudole-container">
+  <div class="form-container">
+    <div class="form-header">
+      <button
+        mat-icon-button
+        [routerLink]="['/roles-manager/list']"
+        routerLinkActive="router-link-active"
+      >
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+      <span> {{ "ROLES.ADD_ROLE" | translate }}</span>
+    </div>
+    <!-- begin form -->
+    <div class="form-content">
+      <form
+        class="form"
+        id="roleform"
+        [formGroup]="roleAddForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <mat-form-field class="mat-form-field-fluid" appearance="outline">
+          <mat-label>{{ "GENERAL.TITLE" | translate }} *</mat-label>
+          <input
+            matInput
+            formControlName="name"
+            [placeholder]="'GENERAL.TITLE' | translate"
+          />
+          <mat-error
+            *ngIf="f.name.hasError('required')"
+            [translate]="'SHARED_VALIDATE.REQIERD'"
+            [translateParams]="{ value: 'GENERAL.TITLE' | translate }"
+          >
+          </mat-error>
+        </mat-form-field>
+
+      </form>
+      <mat-label>{{ "ROLES.PERMITTED_ACTIONS" | translate }} :</mat-label>
+
+      <ktt-role-tree
+        [data]="claimGroup"
+        (selectedList)="changeSelectedList($event)"
+      ></ktt-role-tree>
+    </div>
+    <div class="form-footer">
+      <button [routerLink]="['/roles-manager/list']" mat-stroked-button>
+        {{ "GENERAL.BACK" | translate }}
+      </button>
+
+      <button
+        mat-raised-button
+        form="roleform"
+        type="submit"
+        [disabled]="!roleAddForm.valid"
+        [promiseBtn]="subscriptions"
+        class="submit-button"
+        color="primary"
+      >
+        {{ "GENERAL.SAVE" | translate }}
+      </button>
+    </div>
+  </div>
+</div>

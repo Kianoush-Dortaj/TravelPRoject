@@ -1,0 +1,47 @@
+<div *ngIf="info" class="chat-detail">
+  <div class="chat-detail-header">
+    <div class="chat-detail-image">
+      <img
+        [src]="
+          !info.youSend
+            ? appConfig.apiEndpoint + '/profile/GetAvatarImage/' + info.sednerId
+            : appConfig.apiEndpoint +
+              '/profile/GetAvatarImage/' +
+              info.reciverId
+        "
+      />
+    </div>
+    <div class="chat-detail-info">
+      <div class="chat-detail-info-name">
+        <label *ngIf="info.youSend">{{ info.reciverInfo }}</label>
+        <label *ngIf="!info.youSend">{{ info.senderInfo }}</label>
+      </div>
+      <div class="chat-detail-info-lastSeen">
+        <label *ngIf="userIsTyping==null || userIsTyping==info.userId">Friend</label>
+        <label *ngIf="userIsTyping!=info.userId && userIsTyping!==null">Typing . . .</label>
+      </div>
+    </div>
+  </div>
+
+  <div appScroll [connectionId]="this.info.connectionId" [userId]="info.userId" class="messages">
+    <div *ngIf="showLoadding" class="lds-hourglass"></div>
+    <span *ngFor="let item of messages |sortBy :'desc'">
+      <div *ngIf="item.sender==info.sednerId" class="balon1" data-is="You - 3:20 pm">
+        <a class="float-right">{{item.message}}</a>
+      </div>
+
+      <div *ngIf="item.sender!=info.sednerId" class="balon2" data-is="Yusuf - 3:22 pm">
+        <a class="float-left sohbet2"> {{item.message}} </a>
+      </div>
+    </span>
+  </div>
+
+  <div class="chat-mesdsage">
+    <div class="chat-message-sned-input">
+      <input (keypress)="userTyping()" (keyup)="stopTyping()"#message type="text" />
+    </div>
+    <div class="chat-message-send-button">
+      <button (click)="sendMessage(message.value)"><i class="fas fa-space-shuttle"></i></button>
+    </div>
+  </div>
+</div>

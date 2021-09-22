@@ -1,0 +1,52 @@
+<mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+  <mat-button-toggle (click)="GetAllRequests()" value="bold">All</mat-button-toggle>
+  <mat-button-toggle (click)="GetAllMyRequests()" value="italic">My Requests</mat-button-toggle>
+  <mat-button-toggle (click)="GetAllReciveRequest()" value="underline">Reciver Requests</mat-button-toggle>
+</mat-button-toggle-group>
+<div class="passengers">
+  <div class="items">
+    <div *ngFor="let item of items" class="item">
+      <div class="image">
+        <img [src]="appConfig.apiEndpoint + '/profile/GetAvatar/' + item.userId" />
+      </div>
+      <div class="description">
+        <div class="top">
+          <div [routerLink]="['/profile/'+item.userId]" class="name">
+            <i class="fal fa-user-crown"></i> {{item.displayName}}
+          </div>
+          <div class="price">$ {{ item.budget }}</div>
+        </div>
+        <div class="bottom">
+          <div class="destination">
+            <i class="fal fa-compass"></i> {{ item.country }}. {{ item.city }}
+          </div>
+          <div class="lookingFor"><i class="fal fa-campground"></i> {{item.travelResident}}</div>
+        </div>
+        <div class="under">
+          <div class="travelDate">
+            <i class="fal fa-calendar-alt"></i>
+            {{ item.startDate | date: "yyyy/MM/dd" }} -
+            {{ item.endDate | date: "yyyy/MM/dd" }} (
+            {{ item.diffDate(item.endDate, item.startDate) }} days )
+          </div>
+          <div class="travelby">
+            <i class="far fa-route-highway"></i> {{item.travelType}}
+          </div>
+        </div>
+      </div>
+      <div class="button">
+        <button *ngIf="!item.mustConfirm"
+          [disabled]="item.owner || item.status==status.Accepted || item.status==status.Rejected"
+          [ngClass]="status[item.status]">
+          <span>
+            {{status[item.status]}}
+          </span>
+        </button>
+        <div class="confirmButton" *ngIf="item.mustConfirm">
+          <button (click)="reject(item.id)">Reject</button>
+          <button (click)="confirm(item.id)">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

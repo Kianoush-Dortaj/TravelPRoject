@@ -1,0 +1,67 @@
+
+.element-row {
+  background-color: #fff9f9 !important;
+}
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+.example-element-row {
+  background-color: #f9f9f9 !important;
+}
+.mat-row:nth-child(even):not(.table-detail-row) {
+  background-color: #ffffff;
+}
+
+.mat-row:nth-child(odd):not(.table-detail-row) {
+  background-color: #f9f9f9;
+}
+// tr.example-element-row:not(.example-expanded-row):hover {
+//   background: #fff9f9;
+// }
+
+// tr.example-element-row:not(.example-expanded-row):active {
+//   background: #fff9f9;
+// }
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+.mat-column-more {
+    width: 5%;
+  
+    > mat-icon {
+      background: #e7e7ed;
+      border-radius: 50%;
+    }
+  }
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}

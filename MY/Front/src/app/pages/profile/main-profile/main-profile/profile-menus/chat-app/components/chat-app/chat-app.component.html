@@ -1,0 +1,45 @@
+<div class="chat">
+  <div class="contacts">
+    <div class="searchContact">
+      <input />
+    </div>
+    <div class="items">
+      <div
+        *ngFor="let item of sortBy('sendDateLastMesage'); trackBy: update"
+        (click)="SetConnectionId(item)"
+        class="item"
+      >
+        <div class="item_pic">
+          <img
+            [src]="
+              !item.youSend
+                ? appConfig.apiEndpoint +
+                  '/profile/GetAvatarImage/' +
+                  item.sednerId
+                : appConfig.apiEndpoint +
+                  '/profile/GetAvatarImage/' +
+                  item.reciverId
+            "
+          />
+        </div>
+        <div
+          [ngClass]="{ unReadBold: item.unreadMessagesCount > 0 }"
+          class="item_info"
+        >
+          <div class="item_info_displayName">
+            <label *ngIf="item.youSend">{{ item.reciverInfo }}</label>
+            <label *ngIf="!item.youSend">{{ item.senderInfo }}</label>
+          </div>
+          <div class="item_info_message">
+            <label *ngIf="!item.istyping">{{ item.lastMessage }}</label>
+            <label *ngIf="item.istyping">typing . . .</label>
+          </div>
+        </div>
+        <div *ngIf="item.unreadMessagesCount > 0" class="unreadMessage">
+          <label>{{ item.unreadMessagesCount }}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <chat-detail [info]="selectionChat"></chat-detail>
+</div>

@@ -1,0 +1,13 @@
+.form {
+  .inputs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .fullwidth {
+      width: 100%;
+    }
+    .half {
+      width: 49%;
+    }
+  }
+}

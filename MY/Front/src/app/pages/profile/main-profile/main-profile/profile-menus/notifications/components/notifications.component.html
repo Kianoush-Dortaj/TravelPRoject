@@ -1,0 +1,16 @@
+<div scrollPaging [service]="notificationService" class="notification">
+
+  <div class="items">
+    <div *ngFor="let item of items" class="item">
+      <div class="userImage">
+        <img [src]="appConfig.apiEndpoint+'/profile/GetAvatarImage/' + item.senderId">
+      </div>
+      <div class="title">
+        <div>{{ item.senderName}} <strong>{{notificationtype[item.notificationType-1]}} </strong></div>
+      </div>
+      <div class="date">
+        <div>{{item.sendDate | date :'medium'}}</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<div id="activity-info" (click)="closeActivityInfo()" class="activity-info">
+  <div class="activity-container" id="activity-container">
+    <div
+      id="activity-header"
+      [style.height]="sideInfoHeight ? '67px' : '53px'"
+      class="activity-header"
+    >
+      <div id="closeActivityInfo">
+        <mat-icon>clear</mat-icon>
+      </div>
+      <div class="activity-info-title">
+        {{ title | translate }}
+      </div>
+    </div>
+    <div
+      class="activity-content"
+      [style.padding]="oneByOne ? '23px' : '0'"
+      [ngClass]="{ 'overflow-scroll': scroll }"
+    >
+      <div style="padding: 13px;" [ngClass]="{ scroll: scroll }">
+        <div
+          *ngFor="let info of infos"
+          style="border-bottom: 1px solid #f5f3f6;"
+          class="item"
+        >
+          <div class="item-label" [ngClass]="{ 'font-style': !oneByOne }">
+            {{ info.label | translate }} :
+          </div>
+          <div class="item-value">
+            <pfa-user-field
+              *ngIf="info.UserInfo"
+              [displayName]="element[info.name]"
+              [username]="element[info.userName]"
+              [row]="info.row"
+            ></pfa-user-field>
+
+            <pfa-date-time-format
+              *ngIf="info.isDate"
+              [date]="element[info.value]"
+              [row]="info.row"
+            ></pfa-date-time-format>
+
+            <span *ngIf="info.text">{{ element[info.value] }}</span>
+          </div>
+          <mat-divider></mat-divider>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="mySidenav" class="sidenav">
+  <a (click)="openNav()">
+    <mat-icon class="material-icons-outlined" id="about"
+      >info_outline</mat-icon
+    ></a
+  >
+</div>

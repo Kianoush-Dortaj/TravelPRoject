@@ -1,0 +1,24 @@
+@import "src/stylings/media-queries.scss";
+
+.mat-column-avatar {
+  width: 11%;
+  @include media-breakpoint("lt-md") {
+    display: none;
+  }
+}
+.mat-column-active {
+  @include media-breakpoint("lt-xs") {
+    display: none;
+  }
+}
+
+.mat-column-lastLoggedIn {
+  @include media-breakpoint("lt-xs") {
+    display: none;
+  }
+}
+.mat-column-lastVisitDateTime {
+  @include media-breakpoint("lt-xs") {
+    display: none;
+  }
+}

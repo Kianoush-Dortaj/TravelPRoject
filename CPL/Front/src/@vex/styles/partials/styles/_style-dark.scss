@@ -1,0 +1,101 @@
+.vex-style-dark {
+  @include angular-material-theme($vex-dark-theme);
+
+  // Foreground
+  --background-app-bar: #{map-get(map-get($vex-dark-theme, background), app-bar)};
+
+  // Background
+  --footer-background: var(--background-card);
+  --navigation-background: #{map-get(map-get($vex-dark-theme, background), card)};
+  --toolbar-background: #{map-get(map-get($vex-dark-theme, background), card)};
+  --background-base: #{map-get(map-get($vex-dark-theme, background), background)};
+
+  // Colors
+  --background-card: #{map-get(map-get($vex-dark-theme, background), card)};
+  --footer-color: var(--text-color);
+  --navigation-color: var(--text-color);
+  --text-color: #{$light-primary-text};
+  --toolbar-color: #{$light-primary-text};
+  --text-color-light: #{$dark-primary-text};
+
+  // Toolbar
+  --foreground-divider: #{map-get(map-get($vex-dark-theme, foreground), divider)};
+  --text-hint: #{$light-disabled-text};
+
+  // Navigation
+  --text-hint-light: #{$dark-disabled-text};
+  --background-hover: #{map-get(map-get($vex-dark-theme, background), hover)};
+
+  // Secondary Toolbar
+  --text-secondary: #{$light-secondary-text};
+
+  .form-container {
+    background-color: #2b2b2b !important;
+    color: #bfb3b3 !important;
+  }
+
+  .mat-header-row {
+    > th {
+      color: #ffffff !important;
+    }
+  }
+  .mat-table {
+    tbody {
+      > tr:nth-child(even) {
+        background-color: #484848 !important;
+      }
+      > tr:nth-child(odd) {
+        background-color: #333232 !important;
+      }
+      .mat-column-more > mat-icon {
+        background: #5f5f5f !important;
+        border-radius: 50%;
+      }
+      > tr:hover td {
+        background: #4d4d4d !important;
+      }
+    }
+  }
+  .activity-container{
+    background-color: #2b2b2b !important;
+  }
+  .archive-content {
+    background-color: #484848 !important;
+  }
+  .form-edit{
+    .items{
+      .item:nth-child(odd){
+        background: #464646 !important;
+      }
+      .item:nth-child(even){
+        background: #272626 !important;
+      }
+    }
+  }
+  .filter-container .button-clear{
+    background-color: unset !important;
+  }
+  .seprateForm {
+    .label {
+      > label {
+        color: #fff !important;
+      }
+    }
+  }
+
+  .items:nth-child(odd) {
+    background-color: #484848 !important;
+  }
+
+  .items:nth-child(even) {
+    background-color: #333232 !important;
+  }
+
+  .filter-container .button-clear .btn-filter-search-clear {
+    border: none;
+  }
+
+  // Footer
+  --text-secondary-light: #{$dark-secondary-text};
+  --secondary-toolbar-background: var(--background-card);
+}

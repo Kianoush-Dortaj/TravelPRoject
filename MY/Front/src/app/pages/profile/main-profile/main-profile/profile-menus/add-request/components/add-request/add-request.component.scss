@@ -1,0 +1,17 @@
+textarea{
+  height: 150px;
+}
+.confirmButton {
+  button {
+    width: 50% !important;
+  }
+
+  button:nth-child(1) {
+    border-bottom-right-radius: 0;
+  }
+
+  button:nth-child(2) {
+    border-bottom-left-radius: 0;
+    background-color: #8c00f7;
+  }
+}

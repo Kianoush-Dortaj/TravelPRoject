@@ -1,0 +1,30 @@
+<div class="auth-container">
+    <div class="side-background">
+
+    </div>
+    
+    <div class="side-login-content">
+        <div class="langSelector">
+            <div  class="-mx-1 flex items-center langSelector" >
+                <button [matMenuTriggerFor]="languageMenu" mat-icon-button type="button">
+                  <mat-icon
+                    [icIcon]="selectedLanguage == 'fa' ? emojioneIR : emojioneUK"
+                  ></mat-icon>
+                </button>
+            
+                <mat-menu
+                #languageMenu="matMenu"
+            
+                >
+                <span *ngFor="let item of languages">
+                  <button (click)="layoutRTLChange(item.rtl, item.lang)" mat-menu-item>
+                    <mat-icon [icIcon]="item.flag"></mat-icon>
+                    <span>{{ item.name }}</span>
+                  </button>
+                </span>
+                </mat-menu> 
+              </div>
+        </div>
+        <router-outlet></router-outlet>
+    </div>
+</div>

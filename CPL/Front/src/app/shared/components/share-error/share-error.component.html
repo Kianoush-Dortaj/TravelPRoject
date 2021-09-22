@@ -1,0 +1,41 @@
+<span *ngIf="fieldErrors(fieldName)">
+  <mat-error *ngIf="fieldErrors(fieldName).required">
+    {{ "SHARED_VALIDATE.REQIERD" | translate: { value: nicename } }}
+  </mat-error>
+  <mat-error *ngIf="fieldErrors(fieldName).touched">
+    {{ "SHARED_VALIDATE.REQIERD" | translate: { value: nicename } }}
+  </mat-error>
+  <mat-error *ngIf="fieldErrors(fieldName).pattern">
+    {{ "SHARED_VALIDATE.REQIERD" | translate: { value: nicename } }}
+  </mat-error>
+
+  <mat-error *ngIf="fieldErrors(fieldName).minlength">
+    {{
+      "SHARED_VALIDATE.MIN_LENGHT"
+        | translate
+          : {
+              value: nicename,
+              lenght: fieldErrors(fieldName).minlength.requiredLength
+            }
+    }}
+  </mat-error>
+  <mat-error *ngIf="fieldErrors(fieldName).maxlength">
+    {{
+      "SHARED_VALIDATE.MIN_LENGHT"
+        | translate
+          : {
+              value: nicename,
+              lenght: fieldErrors(fieldName).minlength.requiredLength
+            }
+    }}
+  </mat-error>
+</span>
+<!-- <div class="alert alert-danger mt-1" role="alert" *ngIf="fieldErrors(fieldName).usernameExist">
+      این نام کاربری از قبل ثبت شده است
+  </div>
+  <div class="alert alert-danger mt-1" role="alert" *ngIf="fieldErrors(fieldName).emailExist">
+      این آدرس ایمیل از قبل ثبت شده است
+  </div>
+  <div class="alert alert-danger mt-1" role="alert" *ngIf="fieldErrors(fieldName).notSame">
+      رمز عبور یکسان نیست
+  </div>  -->

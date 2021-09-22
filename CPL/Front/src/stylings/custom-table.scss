@@ -1,0 +1,218 @@
+.table-container {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid #ebedf2;
+  border-radius: 0.25rem;
+  border: 1px solid #e4e5eb;
+  box-shadow: 0px 2px 4px 0px rgba(187, 191, 203, 0.25);
+  table {
+    width: 100%;
+    .action-center {
+      text-align: center !important;
+    }
+    thead {
+      tr {
+        height: 65px;
+        background-color: rgba(249, 247, 247, 0.1) !important;
+        border-bottom: 3px solid #e4e5eb;
+
+        th {
+          padding: 5px 10px 5px 0;
+          color: #424242 !important;
+        }
+      }
+    }
+
+    tbody {
+      tr:nth-child(even) {
+        background-color: #fcfcfc;
+      }
+
+      td {
+        font-size: 14px;
+        padding: 3px 10px 3px 0;
+        color: rgba(0, 0, 0, 0.71);
+
+        .username-box {
+          color: #9e9e9e;
+          font-size: 13px;
+        }
+      }
+
+      td.action {
+        mat-icon,
+        i {
+          color: #9d9fa5;
+        }
+      }
+    }
+
+    p.list-date-time {
+      display: flex;
+      flex-direction: column;
+      margin: 0 !important;
+      padding-top: 7px;
+      padding-bottom: 7px;
+
+      span {
+        display: flex;
+        flex-direction: row;
+
+        mat-icon,
+        svg {
+          width: 18px;
+          height: 15px;
+          margin-left: 5px;
+          min-width: 18px;
+          min-height: 15px;
+          font-size: 16px;
+        }
+      }
+
+      span.list-date {
+        font-size: 14px;
+
+        mat-icon {
+          color: rgba(80, 80, 80, 0.71) !important;
+        }
+      }
+
+      span.list-time {
+        color: #9e9e9e !important;
+        font-size: 13px;
+        padding-top: 5px;
+
+        mat-icon {
+          color: #9e9e9e !important;
+        }
+      }
+    }
+  }
+}
+.table-container table tbody td {
+  padding-right: 13px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.mat-row:nth-child(2n+1){
+  background-color:#f9f9f9 !important ;
+  /*   background-color: #e4f0ec; */
+  // .mat-cell{
+  //   color: $tc-grey-600;
+  // }
+  }
+  .mat-row:not(:nth-child(4n+1)){
+    background-color:#fff !important;
+    // .mat-cell{
+    //   color: $tc-grey-600;
+    // }
+    
+  }
+pfa-element-action-details {
+  width: 100%;
+}
+.element-row {
+  background-color: #fff9f9 !important;
+}
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+.example-element-row {
+  background-color: #f9f9f9 !important;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: #fff9f9;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #fff9f9;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+.mat-row {
+  height: 0 !important;
+}
+.table-arrow-icon{
+    cursor: pointer;
+}
+td.mat-cell.cdk-column-expandedDetail.mat-column-expandedDetail.ng-tns-c16-3.ng-star-inserted:hover {
+  background-color: #ffff;
+}
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+
+// .row-detail {
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     width: 100%;
+//     padding: 29px;
+//     .left-row {
+//         width: 50%;
+//         justify-content: flex-start;
+//         display: flex;
+//         .row-label {
+//             width: 24%;
+//         }
+//         .row-value {
+//             width: 44%;
+//         }
+//     }
+//     .right-row {
+//         width: 50%;
+//         justify-content: flex-start;
+//         display: flex;
+//         .row-label {
+//             width: 24%;
+//         }
+//         .row-value {
+//             width: 61%;
+//         }
+//     }
+// }
+
+.highlightDelete {
+  background-color: #fff7f7 !important;
+}

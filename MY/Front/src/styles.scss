@@ -1,0 +1,23 @@
+@import './../src/app/_travel/styles/media-queries.scss';
+@import './../src/app/_travel/styles/custome-radiobutton.scss';
+@import './../src/app/_travel/styles/custome-forms.scss';
+@import './../src/app/_travel/styles/passengers-items.scss';
+@import './../src/app/_travel/styles/search-panel.scss';
+@import './../src/app/_travel/styles/modal.scss';
+
+
+*{
+  margin: 0;
+}
+
+.mat-form-field-outline{
+  background-color: #fff !important;
+}
+
+.mainContainer{
+  display: flex;
+  height: 100%;
+  margin-top: -59px;
+  padding: 0 35px;
+  background: #F5F5F5 !important;
+}

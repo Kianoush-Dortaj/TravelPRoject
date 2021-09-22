@@ -1,0 +1,125 @@
+<div  class="row desktopSize">
+    <div *ngFor="let item of onDesktopSize" class="row-item">
+      <div class="item-label">{{ item.title | translate }} :</div>
+      <div class="item-value">
+        <span *ngIf="item.isBoolean">
+          <pfa-check-box [value]="element[item.value]"></pfa-check-box>
+        </span>
+        <span *ngIf="item.isDate">
+          <pfa-date-time-format
+          [date]="element[item.value]"
+          [row]="true"
+        ></pfa-date-time-format>
+        </span>
+        <span *ngIf="!item.isBoolean && !item.isDate">
+          {{ element[item.value] }}
+        </span>
+    </div>
+  </div>
+</div>
+
+<div  class="row tabletSize">
+  <div *ngFor="let item of onTabletSize" class="row-item">
+    <div class="item-label">{{ item.title | translate }} :</div>
+    <div class="item-value">
+      <span *ngIf="item.isBoolean">
+        <pfa-check-box [value]="element[item.value]"></pfa-check-box>
+      </span>
+      <span *ngIf="item.isDate">
+        <pfa-date-time-format
+        [date]="element[item.value]"
+        [row]="true"
+      ></pfa-date-time-format>
+      </span>
+      <span *ngIf="!item.isBoolean && !item.isDate">
+        {{ element[item.value] }}
+      </span>
+  </div>
+</div>
+</div>
+
+<div *ngFor="let item of showMobileSize" class="row mobileSize">
+  <div class="row-item">
+    <div class="item-label">{{ item.title | translate }} :</div>
+    <div class="item-value">
+      <span *ngIf="item.isBoolean">
+        <pfa-check-box [value]="element[item.value]"></pfa-check-box>
+      </span>
+      <span *ngIf="item.isDate">
+        <pfa-date-time-format
+        [date]="element[item.value]"
+        [row]="true"
+      ></pfa-date-time-format>
+      </span>
+      <span *ngIf="!item.isBoolean && !item.isDate">
+        {{ element[item.value] }}
+      </span>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="element.creator" class="row">
+  <div class="row-item">
+    <div class="item-label">{{ "GENERAL.CREATOR" | translate }} :</div>
+    <div class="item-value">
+      <pfa-user-field
+        [displayName]="element.creator"
+        [username]="element.creatorEmail"
+      ></pfa-user-field>
+    </div>
+  </div>
+  <div class="row-item">
+    <div class="item-label">{{ "GENERAL.CREATED_DATA" | translate }} :</div>
+    <div class="item-value">
+      <pfa-date-time-format
+        [date]="element.createdDateUtc"
+        [row]="true"
+      ></pfa-date-time-format>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="element.lastChangeDateUtc" class="row">
+  <div class="row-item">
+    <div class="item-label">{{ "GENERAL.LAST_CHANGED_BY" | translate }} :</div>
+    <div class="item-value">
+      <pfa-user-field
+        [displayName]="element.lastChangeBy"
+        [username]="element.lastChangeByEmail"
+      ></pfa-user-field>
+    </div>
+  </div>
+  <div class="row-item">
+    <div class="item-label">{{ "GENERAL.LAST_CHANGE_DATA" | translate }} :</div>
+    <div class="item-value">
+      <pfa-date-time-format
+        [date]="element.lastChangeDateUtc"
+        [row]="true"
+      ></pfa-date-time-format>
+    </div>
+  </div>
+ 
+</div>
+
+<div *ngIf="element.deletedDateUtc" class="row">
+  <div class="row-item">
+    <div class="item-label">{{ "GENERAL.DELETED_BY" | translate }} :</div>
+    <div class="item-value">
+      <pfa-user-field
+        [displayName]="element.deletedBy"
+        [username]="element.deletedByEmail"
+      ></pfa-user-field>
+    </div>
+  </div>
+  <div class="row-item">
+    <div class="item-label">{{ "GENERAL.DELETE_DATE" | translate }} :</div>
+    <div class="item-value">
+      <pfa-date-time-format
+        [date]="element.deletedDateUtc"
+        [row]="true"
+      ></pfa-date-time-format>
+    </div>
+  </div>
+
+</div>

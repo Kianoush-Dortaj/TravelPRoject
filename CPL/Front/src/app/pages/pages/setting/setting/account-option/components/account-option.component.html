@@ -1,0 +1,44 @@
+      <!-- begin form -->
+      <div class="form-content">
+        <form
+          class="form"
+          id="postform"
+          [formGroup]="accountSettingFG"
+          (ngSubmit)="onSubmit()"
+          autocomplete="off"
+        >
+
+          <mat-slide-toggle color="primary" formControlName="twoFactorAuthentication">
+            {{ "SETTING.ACCOUNT_SCURITY.TOW_FACTOR_ACUTHENTICATION" | translate }}
+          </mat-slide-toggle>
+
+          <mat-slide-toggle color="primary" formControlName="email">
+            {{ "SETTING.ACCOUNT_SCURITY.EMAIL" | translate }}
+          </mat-slide-toggle>
+
+          <mat-slide-toggle color="primary" formControlName="sms">
+            {{ "SETTING.ACCOUNT_SCURITY.SMS" | translate }}
+          </mat-slide-toggle>
+  
+        </form>
+        <div class="form-footer">
+          <button
+            [routerLink]="['/user-trading-account']"
+            mat-stroked-button
+          >
+            {{ "GENERAL.BACK" | translate }}
+          </button>
+    
+          <button
+            mat-raised-button
+            form="postform"
+            type="submit"
+            color="primary"
+            [promiseBtn]="subscriptions"
+          >
+            {{ "GENERAL.SAVE" | translate }}
+          </button>
+        </div>
+        <!-- end form -->
+      </div>
+  

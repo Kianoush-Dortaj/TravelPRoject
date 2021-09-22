@@ -1,0 +1,83 @@
+@import "src/stylings/media-queries";
+
+.row {
+  display: flex;
+  padding: 0 35px;
+  font-size: 12px !important;
+  @include media-breakpoint("lt-xs") {
+    display: block;
+    padding: 0 22px;
+  }
+  @include media-breakpoint("lt-sm") {
+    display: block;
+    width: 100%;
+  }
+  .row-item {
+    width: 50%;
+    padding: 5px 0;
+    display: flex;
+    @include media-breakpoint("lt-xs") {
+      display: block;
+      width: 100%;
+    }
+    @include media-breakpoint("lt-sm") {
+      // display: flex;
+      width: 100%;
+    }
+    .item-label {
+      padding: 6px 4px;
+      opacity: 0.6;
+      width: 35%;
+      @include media-breakpoint("lt-xs") {
+        width: 100%;
+      }
+    }
+    .item-value {
+      //   padding: 6px 4px;
+    }
+  }
+}
+.mobileSize {
+  display: none;
+  @include media-breakpoint("lt-xs") {
+    display: block;
+  }
+}
+.tabletSize{
+  display: none;
+  flex-wrap: wrap;
+  @include media-breakpoint("lt-md") {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  @include media-breakpoint("lt-xs") {
+    display: block;
+    width: 100%;
+  }
+  .row-item {
+    width: 100%;
+    @include media-breakpoint("lt-xs") {
+      display: none;
+      width: 100%;
+    }
+  }
+}
+.desktopSize {
+  display: flex;
+  flex-wrap: wrap;
+  @include media-breakpoint("lt-md") {
+    display: none;
+    width: 100%;
+  }
+  @include media-breakpoint("lt-xs") {
+    display: none;
+    width: 100%;
+  }
+  .row-item {
+    width: 50%;
+    @include media-breakpoint("lt-xs") {
+      display: none;
+      width: 100%;
+    }
+  }
+}

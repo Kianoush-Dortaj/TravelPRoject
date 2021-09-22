@@ -1,0 +1,37 @@
+      <!-- begin form -->
+      <div class="form-content">
+        <form
+          class="form"
+          id="postform"
+          [formGroup]="systemSettingFG"
+          (ngSubmit)="onSubmit()"
+          autocomplete="off"
+        >
+
+          <mat-slide-toggle color="primary" formControlName="verifyRegisterAccountWithEmail">
+            {{ "SETTING.SYSTEM_SETTING.EMAIL_VERIFY_WHEN_REGISTER" | translate }}
+          </mat-slide-toggle>
+
+  
+        </form>
+        <div class="form-footer">
+          <button
+            [routerLink]="['/user-trading-account']"
+            mat-stroked-button
+          >
+            {{ "GENERAL.BACK" | translate }}
+          </button>
+    
+          <button
+            mat-raised-button
+            form="postform"
+            type="submit"
+            color="primary"
+            [promiseBtn]="subscriptions"
+          >
+            {{ "GENERAL.SAVE" | translate }}
+          </button>
+        </div>
+        <!-- end form -->
+      </div>
+  

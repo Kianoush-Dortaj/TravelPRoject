@@ -1,0 +1,128 @@
+<div class="headerContainer">
+  <header id="siteHeader">
+    <nav class="mainNavigation">
+      <a class="siteLogo">
+        <img src="./dist/images/logo.f05d292.svg" />
+        <div class="siteName">
+          <img src="./dist/images/logo-type.71f598a.svg" />
+          <p>Best Site for Find Travel Budy</p>
+        </div>
+      </a>
+      <div class="main_navigation">
+        <ul class="main-navigation__list site_options">
+          <li class="main-navigation__item">
+            <a>
+              <i class="fal fa-child"></i>
+              <span>Budy</span>
+            </a>
+          </li>
+          <li class="main-navigation__item">
+            <a>
+              <i class="fal fa-campground"></i>
+              <span>Host</span>
+            </a>
+          </li>
+          <li class="main-navigation__item">
+            <a>
+              <i class="fal fa-route"></i>
+              <span>Place</span>
+            </a>
+          </li>
+          <li class="main-navigation__item">
+            <a>
+              <i class="fal fa-route"></i>
+              <span>Rent</span>
+            </a>
+          </li>
+        </ul>
+        <ul class="main-navigation__list">
+          <li id="myBtn" class="main-navigation__item">
+            <a>
+              <i class="far fa-map-marker-alt"></i>
+              <button class="trigger">Add Place</button>
+            </a>
+          </li>
+          <li *ngIf="!authService.isAuthntication()" id="myBtn" class="main-navigation__item">
+            <a>
+              <i class="fal fa-user"></i>
+              <button [routerLink]="['/auth']" class="trigger">Login - Register</button>
+            </a>
+          </li>
+          <li *ngIf="authService.isAuthntication()" id="myBtn" class="main-navigation__item">
+            <a>
+              <i class="fal fa-user"></i>
+              <button [routerLink]="['/profile']" class="trigger">Profile</button>
+            </a>
+          </li>
+          <li *ngIf="authService.isAuthntication()" id="myBtn" class="main-navigation__item">
+            <a>
+              <i  (click)="openNotificationList()" class="fal fa-bell"></i>
+              <div *ngIf="notifications.length > 0" class="haveNotif"></div>
+              <button (click)="openNotificationList()" class="trigger notif">Notification</button>
+              <div  id="notifList" class="notifList">
+                <div *ngFor="let item of notifications" [routerLink]="['/profile/menu/notifications']" class="item">
+                  <img [src]="appConfig.apiEndpoint+'/profile/GetAvatarImage/' + item.senderId">
+                  <span>
+                    {{item.senderName}} <strong> {{notificationtype[item.notificationType-1]}} </strong>
+                  </span>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li class="main-navigation__item">
+            <a>
+              <i class="far fa-sign-out"></i>
+              <span>Logout </span>
+            </a>
+          </li>
+          <li>
+            <div id="menuToggle">
+              <input type="checkbox" />
+              <span></span>
+              <span></span>
+              <span></span>
+              <div id="menu">
+                <div>
+                  <a>
+                    <i class="fal fa-child"></i>
+                    <label>Budy</label>
+                  </a>
+                </div>
+                <div>
+                  <a>
+                    <i class="fal fa-campground"></i>
+                    <label>Host</label>
+                  </a>
+                </div>
+                <div>
+                  <a>
+                    <i class="fal fa-route"></i>
+                    <label>Place</label>
+                  </a>
+                </div>
+                <div>
+                  <a>
+                    <i class="fal fa-user"></i>
+                    <label class="trigger">Login - Register</label>
+                  </a>
+                </div>
+                <div>
+                  <a>
+                    <i class="fal fa-phone-volume"></i>
+                    <label>Contact Us</label>
+                  </a>
+                </div>
+                <div>
+                  <a>
+                    <i class="fal fa-address-card"></i>
+                    <label>About Us</label>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+</div>

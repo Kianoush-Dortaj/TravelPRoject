@@ -1,0 +1,19 @@
+.btn-delete{
+    background-color: red;
+    color: white;
+}
+.kt-portlet{
+    padding: 13px;
+    .kt-portlet__head-label{
+        border-bottom: 1px solid #F5F5F8;
+        padding-bottom: 5px;
+    }
+    .kt-portlet__body{
+        padding: 21px;
+    }
+    .kt-portlet__foot{
+        border-top: 1px solid #F5F5F8;
+        padding-top: 9px;
+        text-align: end;
+    }
+}

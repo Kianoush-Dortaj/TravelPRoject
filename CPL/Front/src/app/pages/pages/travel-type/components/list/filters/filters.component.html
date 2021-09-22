@@ -1,0 +1,59 @@
+<div class="filter-container">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>search</mat-icon> {{ "GENERAL.SEARCH" | translate }}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="filter">
+          <form [formGroup]="filtersForm">
+            <mat-form-field class="mat-form-field-fluid" appearance="outline">
+              <mat-label>{{ "MANAGERS.USER_NAME" | translate }} </mat-label>
+              <input
+                matInput
+                formControlName="name"
+                [placeholder]="'TRADE_TOOLS.TITLE' | translate"
+              />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>{{ "GENERAL.DELETEED_STATUS" | translate }}</mat-label>
+              <mat-select formControlName="isDeleted">
+                <mat-option value="" selected>
+                  {{ "GENERAL.ALL" | translate }}</mat-option
+                >
+                <mat-option value="true" selected>
+                  {{ "GENERAL.DELETEED" | translate }}</mat-option
+                >
+                <mat-option value="false" selected>
+                  {{ "GENERAL.UNDELETEED" | translate }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+          </form>
+          <div class="buttons">
+            <div class="button-clear">
+              <button
+                (click)="ResetFilters()"
+                mat-raised-button
+                class="btn-filter-search-clear"
+                [disabled]="loading || filtersForm.invalid"
+              >
+                {{ "GENERAL.RESET_FILTER" | translate }}
+              </button>
+            </div>
+  
+            <button
+              (click)="loadFilters()"
+              mat-raised-button
+              [disabled]="loading || filtersForm.invalid"
+              class="btn-filter-search"
+            >
+              {{ "GENERAL.SEARCH" | translate }}
+            </button>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  

@@ -1,0 +1,39 @@
+<div class="breadMain">
+	
+	<div class="label">
+		<label *ngIf="formName!==null ">{{getTranslate(formName)}}</label>
+	</div>
+
+	<div class="route">
+		<ul class="d-inline">
+			<li routerLink="/dashboard" id="pointer">
+				<i class="fas fa-home"></i>
+				<span>
+					{{'BREAD_CRUMP.HOME' | translate}}
+				</span>
+				<i class="fas fa-angle-left"></i>
+            </li>
+            <mat-divider [vertical]="true"></mat-divider>
+			<li id="pointer" *ngFor="let breadcrumb of breadcrumbs;let last = last">
+				<a *ngIf="!last" class="bread">{{'BREAD_CRUMP.'+breadcrumb.label | translate }}  <mat-icon PfaReverseArrow rtl="chevron_right" ltr="chevron_left"></mat-icon></a>
+				<label *ngIf="last" class="bread">{{ 'BREAD_CRUMP.'+breadcrumb.label | translate }}</label>
+			</li>
+		</ul>
+	</div>
+
+	<!-- <ul class="d-inline">
+    <li routerLink="/dashboard" id="pointer">
+      <i class="la la-home"></i>
+      <span>
+        {{'BREAD_CRUMP.HOME' | translate}}
+      </span>
+      <i class="la la-chevron-left"></i>
+    </li>
+    <li id="pointer" *ngFor="let breadcrumb of breadcrumbs;let last = last">
+      <a *ngIf="!last" [routerLink]="[breadcrumb.url]">{{ 'BREAD_CRUMP.'+breadcrumb.label | translate }}
+        <i *ngIf="!last" class="la la-chevron-left"></i></a>
+      <label *ngIf="last">{{ 'BREAD_CRUMP.'+breadcrumb.label | translate }}</label>
+    </li>
+  </ul> -->
+
+</div>

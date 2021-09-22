@@ -1,0 +1,134 @@
+<main>
+  <div id="profile-upper">
+    <div id="profile-banner-image">
+      <img [src]="
+          !info.hasPoster
+            ? './../../../../../assets/img/profile/banner.jpg'
+            : imageProfilePosterPath?imageProfilePosterPath : appConfig.apiEndpoint + '/profile/GetPoster/' + info.id
+        " alt="Banner image" />
+        <div *ngIf="info.owner" type="button" style="z-index: 999999;position: absolute; margin-top: -30px; border-radius: 23px"
+          (click)="onClickBanner()" class="m-btn">
+          <i class="fal fa-camera-retro"></i>
+        </div>
+    </div>
+    <div class="menuItems">
+      <div class="displayName">
+        <label>{{ info.displayName }}</label>
+      </div>
+      <div class="menus" id="p-tabs-m">
+        <div class="td" routerLinkActive="active" [routerLink]="['/profile/menu/request']">
+          <i class="fal fa-stream"></i><span>Time Line</span>
+        </div>
+        <div routerLinkActive="active" [routerLink]="['/profile/menu/user-requests']" class="td">
+          <i class="fal fa-users"></i><span>Requests</span>
+        </div>
+        <div routerLinkActive="active" [routerLink]="['/profile/menu/gallery']" class="td">
+          <i class="fal fa-images"></i><span>Photos</span>
+        </div>
+        <div routerLinkActive="active" [routerLink]="['/profile/menu/chats']" class="td">
+          <i class="fal fa-address-card"></i><span>Chat</span>
+        </div>
+        <div class="td">
+          <i class="fal fa-address-card"></i><span>Host</span>
+        </div>
+        <!-- <div  class="td">
+          <i class="fal fa-sensor-on"></i><span>Notification</span>
+        </div> -->
+        <div routerLinkActive="active" [routerLink]="['/profile/menu/notifications']" class="td">
+          <i class="far fa-bell"></i><span>Notification</span>
+        </div>
+        <div routerLinkActive="active" [routerLink]="['/profile/menu/setting']" class="td">
+          <i class="fal fa-address-card"></i><span>Setting</span>
+        </div>
+      </div>
+    </div>
+    <div id="profile-d">
+      <div id="profile-pic">
+        <img [src]="
+            !info.hasAvatar
+              ? './../../../../../assets/img/profile/' + info.gender + '.jpg'
+              :imageProfilePath?imageProfilePath : appConfig.apiEndpoint + '/profile/GetAvatar/' + info.id
+          " />
+        <div *ngIf="info.owner" type="button" style=" position: absolute; margin-top: -30px; border-radius: 23px"
+          (click)="onClickavatar()" class="m-btn">
+          <i class="fal fa-camera-retro"></i>
+        </div>
+      </div>
+      <!-- <div id="u-name">{{ info.displayName }}</div> -->
+
+      <div *ngIf="info.owner" id="edit-profile"></div>
+    </div>
+    <div id="black-grd"></div>
+  </div>
+  <div id="main-content">
+    <div class="tb">
+      <div class="td" id="l-col">
+        <div class="l-cnt">
+          <div class="cnt-label">
+            <span>I'm Looking for</span>
+            <div class="lb-action">
+              <i *ngIf="info.owner" class="material-icons">edit</i>
+            </div>
+          </div>
+          <div id="i-box">
+            <div id="u-occ">
+              {{info.aboutMe}}
+            </div>
+          </div>
+        </div>
+        <div class="l-cnt">
+          <div class="cnt-label">
+            <span>About Me</span>
+            <div class="lb-action">
+              <i *ngIf="info.owner" class="material-icons">edit</i>
+            </div>
+          </div>
+          <div id="i-box">
+            <div id="u-occ">
+              <div class="label">
+                <label>Live : </label>
+              </div>
+              <div class="value">
+                <label>Tehran</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="td" id="m-col">
+
+        <div *ngIf="info.owner">
+          <router-outlet></router-outlet>
+
+        </div>
+        <div></div>
+        <div id="loading"><i class="material-icons">autorenew</i></div>
+      </div>
+    </div>
+  </div>
+  <div id="device-bar-2"><i class="fab fa-apple"></i></div>
+</main>
+
+<div class="modal">
+  <div class="modal-content">
+    <span class="close-button">×</span>
+    <form>
+      <div class="row">
+        <label for="email">Email</label>
+        <input type="email" name="email" autocomplete="off" placeholder="email@example.com">
+      </div>
+      <div class="row">
+        <label for="password">Password</label>
+        <input type="password" name="password">
+      </div>
+      <button class="loginButton" type="submit">Login</button>
+    </form>
+  </div>
+</div>
+
+<input type="file" id="fileUpload" name="fileUpload" multiple="multiple" (change)="fileChangeBanner($event)"
+  style="display: none" />
+
+<input type="file" id="fileUploadAvatar" name="fileUpload" multiple="multiple" (change)="fileChangeAvatar($event)"
+  style="display: none" />

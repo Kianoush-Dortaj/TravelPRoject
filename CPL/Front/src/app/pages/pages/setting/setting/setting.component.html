@@ -1,0 +1,22 @@
+<vex-secondary-toolbar current="SETTING">
+    <vex-breadcrumbs class="flex-auto"></vex-breadcrumbs>
+  </vex-secondary-toolbar>
+<div class="mudole-container">
+  <div class="form-container">
+    <mat-tab-group dynamicHeight>
+      <mat-tab [label]="'SETTING.ACCOUNT_SCURITY.ACCOUNT_SCURITY' | translate">
+
+          <account-option></account-option>
+
+      </mat-tab>
+
+      <mat-tab [label]="'SETTING.SYSTEM_SETTING.SYSTEM_SETTING' | translate">
+
+        <register-setting></register-setting>
+
+    </mat-tab>
+
+
+    </mat-tab-group>
+  </div>
+</div>

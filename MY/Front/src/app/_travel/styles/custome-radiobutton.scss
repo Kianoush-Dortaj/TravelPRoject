@@ -1,0 +1,36 @@
+.gender-selector {
+  margin-bottom: 15px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  .label{
+    color: #828282;
+    font-size: 13px;
+    font-weight: 100;
+  }
+  .value{
+    padding: 0 22px;
+    text-align: center;
+    label{
+      margin: 0 10px;
+    }
+    input{
+      appearance: none;
+      cursor: pointer;
+      &:checked ~ i{
+        color: red;
+        background-color:rgb(0, 0, 0);
+      }
+    }
+    i{
+      cursor: pointer;
+      font-size: 19px;
+      background-color: #ffffff;
+      padding: 10px;
+      border-radius: 50%;
+      width: 22px;
+      border: 1px solid #dddddd;
+    }
+  }
+}

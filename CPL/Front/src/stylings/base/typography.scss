@@ -1,0 +1,45 @@
+@import 'media-queries.scss';
+
+$fs-xs: 12px;
+$fs-sm:14px;
+$fs-md:16px;
+$fs-lg:18px;
+$fs-xl:20px;
+$fs-2xl:24px;
+$fs-3xl:28px;
+$fs-4xl:32px;
+$fs-5xl:40px;
+
+
+@mixin font-size($desktop ,$tablet: null , $mobile : null, $important: null ) {
+
+   @if $important != null {
+      font-size: $desktop !important;
+
+      @if $tablet != null {
+      @include media-breakpoint('lt-lg') {
+         font-size: $tablet !important;
+      }
+     }
+      @if $mobile != null {
+      @include media-breakpoint('lt-sm') {
+         font-size: $mobile !important;
+     }
+   } 
+   }
+   @else{
+      font-size: $desktop;
+
+      @if $tablet != null {
+      @include media-breakpoint('lt-lg') {
+         font-size: $tablet;
+      }
+     }
+      @if $mobile != null {
+      @include media-breakpoint('lt-sm') {
+         font-size: $mobile;
+     }
+   }
+   }
+ 
+} 

@@ -1,0 +1,86 @@
+<vex-secondary-toolbar current="CATEGORY">
+  <vex-breadcrumbs class="flex-auto"></vex-breadcrumbs>
+</vex-secondary-toolbar>
+<div class="mudole-container">
+  <div class="form-container">
+    <div class="form-header">
+      <button
+        mat-icon-button
+        [routerLink]="['/category']"
+        routerLinkActive="router-link-active"
+      >
+        <mat-icon
+          PfaReverseArrow
+          rtl="arrow_forward"
+          ltr="arrow_back"
+        ></mat-icon>
+      </button>
+      <span>
+        {{ "CATEGORY.EDIT_CATEGORY" | translate }}
+      </span>
+    </div>
+    <!-- begin form -->
+    <div class="form-content">
+      <form
+        class="form"
+        id="postform"
+        [formGroup]="addCategory"
+        (ngSubmit)="onSubmit()"
+        autocomplete="off"
+      >
+        <mat-form-field appearance="outline">
+          <mat-label>{{ "CATEGORY.NAME" | translate }} </mat-label>
+          <input required formControlName="name" matInput />
+          <mat-error
+            *ngIf="f.name.hasError('required')"
+            [translate]="'SHARED_VALIDATE.REQIERD'"
+            [translateParams]="{ value: 'CATEGORY.NAME' | translate }"
+          >
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>{{ "CATEGORY.PARENT" | translate }}</mat-label>
+          <mat-select required formControlName="parentId">
+            <mat-option value="null" selected>
+              دسته اصلی
+            </mat-option>
+            <ng-container *ngFor="let item of categoryList">
+              <mat-option
+                *ngIf="item._id != data.id"
+                [value]="item._id"
+                selected
+              >
+                {{ item.name }}
+              </mat-option>
+            </ng-container>
+          </mat-select>
+          <mat-error
+            *ngIf="f.parentId.hasError('required')"
+            [translate]="'SHARED_VALIDATE.REQIERD'"
+            [translateParams]="{ value: 'CATEGORY.PARENT' | translate }"
+          >
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </div>
+
+    <div class="form-footer">
+      <button [routerLink]="['/category']" mat-stroked-button>
+        {{ "GENERAL.BACK" | translate }}
+      </button>
+
+      <button
+        mat-raised-button
+        form="postform"
+        type="submit"
+        [disabled]="!addCategory.valid"
+        color="primary"
+        [promiseBtn]="subscriptions"
+      >
+        {{ "GENERAL.SAVE" | translate }}
+      </button>
+    </div>
+    <!-- end form -->
+  </div>
+</div>

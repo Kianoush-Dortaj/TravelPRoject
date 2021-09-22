@@ -1,0 +1,35 @@
+
+@import "../../../../../../../../src/stylings/media-queries.scss";
+
+.auth-container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+  .side-background {
+    width: 80%;
+    height: 100%;
+    background-image: url("../../../../../../../assets/img/demo/login-bg-1.jpg") !important;
+    background-repeat: no-repeat; 
+    @include media-breakpoint("lt-md") {
+      display: none;
+     }
+   }
+  .side-login-content {
+    width: 40%;
+    padding: 35px;
+    @include media-breakpoint("lt-md") {
+      width: 70%;
+     }
+     @include media-breakpoint("lt-sm") {
+      width: 100%;
+     }
+     .langSelector{
+      position: absolute;
+      top: 0;
+      width: 30%;
+      display: flex;
+      justify-content: start;
+     }
+  }
+}

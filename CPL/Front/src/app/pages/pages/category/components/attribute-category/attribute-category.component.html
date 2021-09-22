@@ -1,0 +1,98 @@
+<vex-secondary-toolbar current="CATEGORY">
+  <vex-breadcrumbs class="flex-auto"></vex-breadcrumbs>
+</vex-secondary-toolbar>
+<div class="mudole-container">
+  <div class="form-container">
+    <div class="form-header">
+      <button
+        mat-icon-button
+        [routerLink]="['/category']"
+        routerLinkActive="router-link-active"
+      >
+        <mat-icon
+          PfaReverseArrow
+          rtl="arrow_forward"
+          ltr="arrow_back"
+        ></mat-icon>
+      </button>
+      <span>
+        {{ "CATEGORY.EDIT_CATEGORY" | translate }}
+      </span>
+    </div>
+    <!-- begin form -->
+    <div class="form-content">
+      <form
+        class="form"
+        id="postform"
+        [formGroup]="attributeFG"
+        (ngSubmit)="onSubmit()"
+        autocomplete="off"
+      >
+        <!-- Form Array -->
+        <div
+          formArrayName="attr"
+          class="question"
+          *ngFor="
+            let project of attributeFG.get('attr')['controls'];
+            let i = index
+          "
+        >
+          <ng-container [formGroupName]="i">
+            <!-- optionTitle -->
+            <mat-form-field class="mat-form-field-fluid" appearance="outline">
+              <mat-label
+                >{{ "COURSE_QUESTION.ANSWER" | translate }} *</mat-label
+              >
+              <input
+                autocomplete="false"
+                matInput
+                formControlName="attrType"
+                [placeholder]="'COURSE_QUESTION.ANSWER' | translate"
+              />
+            </mat-form-field>
+            <!-- optionTitle -->
+            <mat-form-field class="mat-form-field-fluid" appearance="outline">
+              <mat-label
+                >{{ "COURSE_QUESTION.ANSWER" | translate }} *</mat-label
+              >
+              <input
+                autocomplete="false"
+                matInput
+                formControlName="attrName"
+                [placeholder]="'COURSE_QUESTION.ANSWER' | translate"
+              />
+            </mat-form-field>
+            <!-- isCorrect -->
+            <div class="icon">
+              <!-- trash -->
+
+              <mat-icon (click)="deleteItem(i)">
+                remove_circle
+              </mat-icon>
+            </div>
+          </ng-container>
+        </div>
+        <hr>
+        <mat-icon (click)="AddItems()">add_circle</mat-icon>
+      </form>
+    </div>
+
+    <div class="form-footer">
+      <button [routerLink]="['/category']" mat-stroked-button>
+        {{ "GENERAL.BACK" | translate }}
+      </button>
+
+      <button
+        mat-raised-button
+        form="postform"
+        type="submit"
+        [disabled]="!attributeFG.valid"
+        color="primary"
+        [promiseBtn]="subscriptions"
+      >
+        {{ "GENERAL.SAVE" | translate }}
+      </button>
+    </div>
+    <!-- end form -->
+  </div>
+</div>

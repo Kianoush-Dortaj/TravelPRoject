@@ -1,0 +1,123 @@
+<form [formGroup]="requestFG" (ngSubmit)="onSubmit()" class="form">
+  <div class="inputs">
+    <div class="half">
+      <mat-form-field appearance="outline">
+        <mat-label>Travel Type</mat-label>
+        <mat-select formControlName="travelType">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let item of travelTypeList" [value]="item.id">
+            <i [class]="'fal '+item.icon"></i> {{ item.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="half">
+      <mat-form-field appearance="outline">
+        <mat-label>Travel Resident</mat-label>
+        <mat-select formControlName="travelResidence">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let item of travelResidentList" [value]="item.id">
+            <i [class]="'fal '+item.icon"></i> {{ item.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="fullwidth">
+      <search-place [setLocation]="model" (location)="SetLocation($event)">
+      </search-place>
+    </div>
+
+    <div class="half">
+      <mat-form-field appearance="outline">
+        <mat-label>Start Travel Date</mat-label>
+        <input formControlName="startDate" matInput [matDatepicker]="dpstart" />
+        <mat-datepicker-toggle matSuffix [for]="dpstart"></mat-datepicker-toggle>
+        <mat-datepicker #dpstart></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="half">
+      <mat-form-field appearance="outline">
+        <mat-label>End Travel Date</mat-label>
+        <input formControlName="endDate" matInput [matDatepicker]="dpend" />
+        <mat-datepicker-toggle matSuffix [for]="dpend"></mat-datepicker-toggle>
+        <mat-datepicker #dpend></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="half">
+      <mat-form-field appearance="outline">
+        <mat-label>Budget </mat-label>
+        <input formControlName="budget" matInput type="number" />
+      </mat-form-field>
+    </div>
+
+    <div class="gender-selector half">
+      <div class="label">
+        <label>Lokking For</label>
+      </div>
+      <div class="value">
+        <label>
+          <input type="radio" formControlName="lookingfor" value="male" />
+          <i class="fal fa-male"></i>
+        </label>
+        <label>
+          <input type="radio" formControlName="lookingfor" value="female" />
+          <i class="fal fa-female"></i>
+        </label>
+      </div>
+    </div>
+    <div class="fullwidth">
+      <mat-form-field appearance="outline">
+        <mat-label>Leave a comment</mat-label>
+        <textarea formControlName="description" row="6" matInput placeholder="Ex. It makes me feel..."></textarea>
+      </mat-form-field>
+    </div>
+
+    <button type="submit" mat-flat-button color="primary">
+      <i class="fal fa-paper-plane"></i>
+    </button>
+  </div>
+</form>
+
+<div class="passengers">
+  <div class="items">
+    <div *ngFor="let item of items" class="item">
+      <div class="image">
+        <img [src]="appConfig.apiEndpoint + '/profile/GetAvatar/' + item.userId" />
+      </div>
+      <div class="description">
+        <div class="top">
+          <div [routerLink]="['/profile/'+item.userId]" class="name">
+            <i class="fal fa-user-crown"></i> {{item.displayName}}
+          </div>
+          <div class="price">$ {{ item.budget }}</div>
+        </div>
+        <div class="bottom">
+          <div class="destination">
+            <i class="fal fa-compass"></i> {{ item.country }}. {{ item.city }}
+          </div>
+          <div class="lookingFor"><i class="fal fa-campground"></i> {{item.travelResidentName}}</div>
+        </div>
+        <div class="under">
+          <div class="travelDate">
+            <i class="fal fa-calendar-alt"></i>
+            {{ item.startDate | date: "yyyy/MM/dd" }} -
+            {{ item.endDate | date: "yyyy/MM/dd" }} (
+            {{ item.diffDate(item.endDate, item.startDate) }} days )
+          </div>
+          <div class="travelby">
+            <i class="far fa-route-highway"></i> {{item.travelTypeName}}
+          </div>
+        </div>
+      </div>
+      <div class="button">
+        <div class="confirmButton">
+          <button (click)="DeleteRequest(item.id)">Delete</button>
+          <button (click)="SetEdit(item)">Edit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

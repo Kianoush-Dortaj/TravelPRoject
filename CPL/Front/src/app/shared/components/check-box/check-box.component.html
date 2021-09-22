@@ -1,0 +1,7 @@
+<ng-container *ngIf="value else deactive">
+	<mat-icon class="active">done</mat-icon>
+</ng-container>
+
+<ng-template #deactive>
+	<mat-icon class="deactive">clear</mat-icon>
+</ng-template>

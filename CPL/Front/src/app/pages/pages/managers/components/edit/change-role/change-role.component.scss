@@ -1,0 +1,21 @@
+@import "src/stylings/media-queries.scss";
+
+.role-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 153px;
+  @include media-breakpoint("lt-md") {
+    padding: 0 0;
+  }
+}
+.rolesContent {
+  padding-bottom: 21px;
+  display: flex;
+  justify-content: space-around;
+}
+.active {
+  background: #d5ffa6;
+  border: 1px solid;
+  border-radius: 6px;
+  padding: 0 5px;
+}

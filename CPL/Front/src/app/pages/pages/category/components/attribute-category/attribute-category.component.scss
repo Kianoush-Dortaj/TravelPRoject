@@ -1,0 +1,28 @@
+.question {
+  display: flex;
+  justify-content: space-between;
+  mat-form-field:first-child {
+    width: 50%;
+  }
+  mat-form-field:not(first-child) {
+    width: 30%;
+  }
+  .icon {
+    width: 10%;
+    margin-top: 20px;
+    mat-icon {
+      color: rgb(221, 19, 19);
+      cursor: pointer;
+    }
+  }
+}
+.form {
+  mat-icon {
+    position: relative;
+    /* margin-top: -12px; */
+    margin: 0 auto;
+    top: -13px;
+    color: #0000a7;
+    cursor: pointer;
+  }
+}

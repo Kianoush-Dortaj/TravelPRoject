@@ -1,0 +1,45 @@
+<!-- begin form -->
+<div class="form-content">
+  <form
+    class="form"
+    id="postform"
+    [formGroup]="systemSettingFG"
+    (ngSubmit)="onSubmit()"
+    autocomplete="off"
+  >
+  <mat-form-field appearance="fill">
+    <mat-label>Favorite food</mat-label>
+    <mat-select formControlName="adminRegister">
+      <mat-option *ngFor="let item of roles" [value]="item._id">
+        {{ item.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Favorite food</mat-label>
+    <mat-select formControlName="userRegister">
+      <mat-option *ngFor="let item of roles" [value]="item._id">
+        {{ item.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  </form>
+  <div class="form-footer">
+    <button
+      [routerLink]="['/user-trading-account']"
+      mat-stroked-button
+    >
+      {{ "GENERAL.BACK" | translate }}
+    </button>
+
+    <button
+      mat-raised-button
+      form="postform"
+      type="submit"
+      color="primary"
+      [promiseBtn]="subscriptions"
+    >
+      {{ "GENERAL.SAVE" | translate }}
+    </button>
+  </div>
+</div>

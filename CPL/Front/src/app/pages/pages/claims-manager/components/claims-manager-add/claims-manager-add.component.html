@@ -1,0 +1,87 @@
+<div class="form-container">
+  <div class="form-header">
+    <span style="margin-right: 27px;margin-left: 27px">
+     {{'CLAIMS_MANAGER.CHILD_FOR' |translate}} {{ data.claimName }}</span
+    >
+  </div>
+  <!-- begin form -->
+  <div
+    class="add-form"
+    style="padding: 21px; font-family: IRANSans !important;"
+  >
+    <form
+      class="form"
+      id="roleform"
+      [formGroup]="addClaimFG"
+      (ngSubmit)="onSubmit()"
+    >
+      <mat-form-field class="mat-form-field-fluid" appearance="outline">
+        <mat-label>{{ "CLAIMS_MANAGER.TITLE" | translate }} *</mat-label>
+        <input
+          matInput
+          formControlName="name"
+          [placeholder]="'CLAIMS_MANAGER.TITLE' | translate"
+        />
+        <mat-error
+        *ngIf="f.name.hasError('required')"
+        [translate]="'SHARED_VALIDATE.REQIERD'"
+        [translateParams]="{ value: 'CLAIMS_MANAGER.TITLE' | translate }"
+      >
+      </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="mat-form-field-fluid" appearance="outline">
+        <mat-label>{{ "CLAIMS_MANAGER.TITLE" | translate }} *</mat-label>
+        <input
+          matInput
+          formControlName="permissionId"
+          [placeholder]="'CLAIMS_MANAGER.TITLE' | translate"
+        />
+        <mat-error
+        *ngIf="f.permissionId.hasError('required')"
+        [translate]="'SHARED_VALIDATE.REQIERD'"
+        [translateParams]="{ value: 'CLAIMS_MANAGER.TITLE' | translate }"
+      >
+      </mat-error>
+      </mat-form-field>
+
+      <mat-slide-toggle color="primary" formControlName="isChilde">
+        {{ "CLAIMS_MANAGER.IS_CHILD" | translate }}
+      </mat-slide-toggle>
+    </form>
+  </div>
+  <div class="form-footer">
+
+    <button
+    [routerLink]="['/claims-manager/list']"
+    (click)="cancel()"
+    mat-stroked-button
+  >
+    {{ "GENERAL.BACK" | translate }}
+  </button>
+
+    <button
+      mat-raised-button
+      [disabled]="!addClaimFG.valid"
+      [promiseBtn]="subscriptions"
+      (click)="saveAnContinue()"
+      class="submit-button"
+      color="warn"
+      style="    width: fit-content;"
+    >
+      {{ "GENERAL.SAVE_COUNTINUE" | translate }}
+    </button>
+
+    <button
+    mat-raised-button
+    form="roleform"
+    type="submit"
+    [disabled]="!addClaimFG.valid"
+    [promiseBtn]="subscriptions"
+    class="submit-button"
+    color="primary"
+  >
+    {{ "GENERAL.SAVE" | translate }}
+  </button>
+  </div>
+</div>

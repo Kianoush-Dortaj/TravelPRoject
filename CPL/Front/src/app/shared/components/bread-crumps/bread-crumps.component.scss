@@ -1,0 +1,23 @@
+.breadMain {
+  background-color: #fff;
+  display: flex;
+  margin-bottom: 12px;
+  justify-content: space-between;
+  padding: 7px;
+  align-items: center;
+  .route {
+    > ul {
+      display: flex;
+      direction: ltr;
+      > li {
+        padding: 7px;
+    >a{
+        display: flex;
+        >mat-icon{
+            padding-left: 10px;
+        }
+    }  
+    }
+    }
+  }
+}
