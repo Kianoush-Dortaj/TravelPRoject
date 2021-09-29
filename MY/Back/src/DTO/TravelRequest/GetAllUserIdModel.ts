@@ -1,3 +1,4 @@
+import { RequestStatus } from "../../DataLayer/Context/Request/RequestStatus";
 import { ITravelResidenceAttr } from "../../DataLayer/Context/Travelresidence/ITravelResidenceAttr";
 import { ITravelTypeAttr } from "../../DataLayer/Context/TravelType/ITravelTypeAttr";
 import { Gender } from "../../DataLayer/Context/User/Gender"
@@ -6,6 +7,7 @@ import { IUserAttrs } from "../../DataLayer/Context/User/IUserAttr";
 export interface GetAllUserIdModel {
     travelTypeId: string;
     travelesidenceId: string;
+    reqId?:string;
     userId: string;
     owner:boolean;
     startDate: Date;
@@ -18,6 +20,8 @@ export interface GetAllUserIdModel {
     requestId: string;
     firstName: string;
     lastName: string;
+    status?:RequestStatus;
+    mustConfirm:boolean;
     travelTypeName: string;
     travelTypeIcon: string;
     travelResidentName: string;

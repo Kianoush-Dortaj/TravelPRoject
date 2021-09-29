@@ -8,6 +8,8 @@ usersRouter.post('/Create', authrization.AuthToken, travelRequestController.Crea
 
 usersRouter.get('/GetAllByUserId', authrization.AuthToken, travelRequestController.GetAllTravelRequestByUserId);
 
+usersRouter.get('/GetAll', travelRequestController.GetAllTravelRequest);
+
 usersRouter.delete('/Delete/:id', authrization.AuthToken, travelRequestController.DeleteTravel);
 
 usersRouter.put('/Update/:id', authrization.AuthToken, travelRequestController.UpdateTravel);

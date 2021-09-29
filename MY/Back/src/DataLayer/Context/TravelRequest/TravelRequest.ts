@@ -8,6 +8,7 @@ const TravelRequestSchema = new Schema({
     travelType: { type: Schema.Types.ObjectId, ref: "TravelType", require: true },
     travelResidence: { type: Schema.Types.ObjectId, ref: "TravelResidence", require: true },
     userId: { type: Schema.Types.ObjectId, ref: "User", require: true },
+    requestId: { type: Schema.Types.ObjectId, ref: "Request" },
     country: { type: String, require: true },
     city: { type: String, require: true },
     startDate: { type: Date, require: true },

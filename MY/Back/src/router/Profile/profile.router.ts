@@ -13,7 +13,8 @@ usersRouter.get('/GetProfileInfo', authrization.AuthToken, profileController.Get
 
 usersRouter.post('/UploadAvatar',
     authrization.AuthToken,
-    uploadAvatar.single('avatar')
+    uploadAvatar.single('avatar'),
+    profileController.UpdateAvatar
  );
 
 usersRouter.get('/GetAvatar/:id', profileController.GetAvatar);

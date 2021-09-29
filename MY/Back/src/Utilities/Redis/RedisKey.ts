@@ -6,6 +6,8 @@ export default new class RedisKey {
     UserAvatar='UserAvatar/';
     UserPoster='UserPoster/';
     TravelRequest='TravelRequest/';
+    RequestByTravelId='RequestByTravelId/';
     AllTravelRequestbyUserId='AllTravelRequestbyUserId/';
+    AllTravelRequest='AllTravelRequest/';
 
 }

@@ -6,7 +6,7 @@ export default new class Webocket {
     wss: WebSocket.Server;
 
     constructor() {
-        this.wss = new WebSocket.Server({ port: 7142 })
+        this.wss = new WebSocket.Server({ port: 3256 })
     }
 
     InitialWebsocket(): void {

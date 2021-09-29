@@ -46,15 +46,15 @@ export class ProfileRepository implements IProfileRepository {
             let userAvatarUrl = undefined;
 
             let userAvatar = await RedisRepository.Get<any>(RedisKey.UserAvatar + userId);
-            if (userAvatar.success) {
+            if (userAvatar.result) {
                 userAvatarUrl = userAvatar.result;
             } else {
                 let userInfo = await UserEntite.findById(userId).select('avatar');
                 userAvatarUrl = userInfo?.avatar;
             }
-
+            
             if (userAvatarUrl) {
-                let data = await fs.readFileSync('F:/Projects/Travel/MY/Back/src/public' + userAvatarUrl);
+                let data = await fs.readFileSync('F:/Projects/TravelPRoject/MY/Back/src/public' + userAvatarUrl);
                 return OperationResult.BuildSuccessResult('Upload Success', data);
             }
             return OperationResult.BuildFailur('Error when finde image . try again');
@@ -110,7 +110,7 @@ export class ProfileRepository implements IProfileRepository {
             }
 
             if (userPosterUrl) {
-                let data = await fs.readFileSync('F:/Projects/Travel/MY/Back/src/public' + userPosterUrl);
+                let data = await fs.readFileSync('F:/Projects/TravelPRoject/MY/Back/src/public' + userPosterUrl);
                 return OperationResult.BuildSuccessResult('Upload Success', data);
             }
 

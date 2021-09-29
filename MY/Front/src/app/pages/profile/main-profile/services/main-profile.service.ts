@@ -26,8 +26,8 @@ export class MainProfileService {
     return this.httpClient.get<ServerResponse<GetProfileInfoModel>>(this.appConfig.apiEndpoint + '/profile/Information/' + id)
   }
 
-  GetAllUnreadNotifications(): Observable<ServerResponse<NotificationModel[]>> {
-    return this.httpClient.get<ServerResponse<NotificationModel[]>>(this.appConfig.apiEndpoint + '/notification/GetAllUnread')
+  GetAllUnreadNotifications(): Observable<any> {
+    return this.httpClient.get<any>(this.appConfig.apiEndpoint + '/notification/GetAllUnread')
   }
 
   playReciveNotificationAudio() {

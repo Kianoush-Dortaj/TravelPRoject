@@ -61,7 +61,7 @@
               <button (click)="openNotificationList()" class="trigger notif">Notification</button>
               <div  id="notifList" class="notifList">
                 <div *ngFor="let item of notifications" [routerLink]="['/profile/menu/notifications']" class="item">
-                  <img [src]="appConfig.apiEndpoint+'/profile/GetAvatarImage/' + item.senderId">
+                  <img [src]="appConfig.apiEndpoint+'/profile/GetAvatar/' + item.senderId">
                   <span>
                     {{item.senderName}} <strong> {{notificationtype[item.notificationType-1]}} </strong>
                   </span>
@@ -70,7 +70,7 @@
             </a>
           </li>
           <li class="main-navigation__item">
-            <a>
+            <a (click)="logOut()">
               <i class="far fa-sign-out"></i>
               <span>Logout </span>
             </a>

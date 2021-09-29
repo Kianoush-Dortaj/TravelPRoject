@@ -9,6 +9,8 @@ export interface ITravelRequestRepository {
 
     GetAllTravelRequestByUserId(userId: string): Promise<OperationResult<any>>;
 
+    GetAllTravelRequest(userId: string): Promise<OperationResult<any>>;
+
     DeleteRequest(requestId: string, userId: string): Promise<OperationResult<boolean>>;
 
     UpdateRequest(item: TravelRequestUpdateModel, userId: string): Promise<OperationResult<boolean>>;

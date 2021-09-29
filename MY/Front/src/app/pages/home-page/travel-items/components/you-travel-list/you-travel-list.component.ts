@@ -9,15 +9,15 @@ import { TravelItemsService } from '../../services/travel-item.service';
 })
 export class YouTravelListComponent implements OnInit {
 
-  items:any;
+  items: any;
 
   constructor(private travelItemService: TravelItemsService,
-    public dialogRef: MatDialogRef<YouTravelListComponent>,) { }
+    public dialogRef: MatDialogRef<YouTravelListComponent>) { }
 
   ngOnInit(): void {
     this.travelItemService.GetAllUserTravelREquest()
       .subscribe(data => {
-        this.items=data.result
+        this.items = data.result.data
       })
   }
 

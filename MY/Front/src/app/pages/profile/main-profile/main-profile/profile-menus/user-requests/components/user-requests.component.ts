@@ -57,8 +57,8 @@ export class UserRequestsComponent implements OnInit {
         this.alertService.SuccessToast(data.message);
         let item = this.items.find(x => x.id == id);
         item.mustConfirm = false;
-        item.status = RequestStatus.Accepted;
-        this.socket.sendChangeTravelStatus({ reciver: data.result.sender, reqId: data.result.id, status: RequestStatus.Accepted, id: data.result.targetRequestId })
+        item.status = RequestStatus.Accept;
+        this.socket.sendChangeTravelStatus({ reciver: data.result.sender, reqId: data.result.id, status: RequestStatus.Accept, id: data.result.targetRequestId })
       })
   }
 
@@ -69,8 +69,8 @@ export class UserRequestsComponent implements OnInit {
         this.alertService.SuccessToast(data.message);
         let item = this.items.find(x => x.id == id);
         item.mustConfirm = false;
-        item.status = RequestStatus.Rejected;
-        this.socket.sendChangeTravelStatus({ reciver: data.result.sender, reqId: data.result.id, status: RequestStatus.Rejected, id: data.result.targetRequestId })
+        item.status = RequestStatus.Rejecte;
+        this.socket.sendChangeTravelStatus({ reciver: data.result.sender, reqId: data.result.id, status: RequestStatus.Rejecte, id: data.result.targetRequestId })
       })
   }
 
@@ -144,7 +144,7 @@ export class UserRequestsComponent implements OnInit {
     this.items = this.userRequestService.GetAllReciveTravelRequest()
       .subscribe(res => {
         if (res.success) {
-          this.items = res.result.map(data => {
+          this.items = res.result.data.map(data => {
             return {
               userId: data.userId,
               startDate: data.startDate,
@@ -152,7 +152,7 @@ export class UserRequestsComponent implements OnInit {
               country: data.country,
               city: data.city,
               id: data.id,
-              displayName: data.displayName,
+              displayName: data.firstName + ' ' + data.lastName,
               travelType: data.travelTypeName,
               travelTypeIcon: data.travelTypeIcon,
               travelResident: data.travelResident,

@@ -1,6 +1,7 @@
 import { IJWTRepository } from "../JWT/IJWTRepository";
 import { ILoginRepository } from "../Login/ILoginRepository";
 import { IProfileRepository } from "../Profile/IProfileRepository";
+import { IRequestRepository } from "../Request/IRequestRepository";
 import { ITravelRequestRepository } from "../TravelRequest/ITravelRequestRepository";
 import { ITravelResidenceRepository } from "../TravelResdence/ITravelResidenceRepository";
 import { ITravelTypeRepository } from "../TravelType/ITravelTypeRepository";
@@ -14,6 +15,7 @@ export interface IUnitOfWork {
     ProfileRepository: IProfileRepository;
     TravelTypeRepository: ITravelTypeRepository;
     TravelResidenceRepository: ITravelResidenceRepository;
-    TravelRequestRepository:ITravelRequestRepository;
+    TravelRequestRepository: ITravelRequestRepository;
+    RequestRepository: IRequestRepository;
 
 }

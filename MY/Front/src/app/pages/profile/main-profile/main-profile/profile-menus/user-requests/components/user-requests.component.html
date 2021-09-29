@@ -35,15 +35,14 @@
         </div>
       </div>
       <div class="button">
-        <button *ngIf="!item.mustConfirm"
-          [disabled]="item.owner || item.status==status.Accepted || item.status==status.Rejected"
-          [ngClass]="status[item.status]">
-          <span>
+        <button *ngIf="item.mustConfirm===false" [disabled]="item.owner===true || item.status===status.Accept || item.status===status.Rejecte" [ngClass]="status[item.status]"
+          (click)="sendRequest(item.userId,item.id,item.status,item.reqId)">
+          <span *ngIf="item.status !== status.Accept else reserved">
             {{status[item.status]}}
           </span>
         </button>
         <div class="confirmButton" *ngIf="item.mustConfirm">
-          <button (click)="reject(item.id)">Reject</button>
+          <button>Reject</button>
           <button (click)="confirm(item.id)">Confirm</button>
         </div>
       </div>

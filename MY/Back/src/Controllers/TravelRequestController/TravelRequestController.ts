@@ -59,6 +59,29 @@ export default new class TravelRequestController extends BaseController {
         }
     }
 
+
+    async GetAllTravelRequest(req: Request, res: Response, next: NextFunction) {
+
+        try {
+            let validation = await this.ValidationAction(req, res);
+            let userId = (await UnitOfWork.jwtRepository.DecodeToken(req, res, next)).result;
+
+            if (!validation.haveError) {
+
+                let getAllUserTravelRequest = await UnitOfWork.TravelRequestRepository.GetAllTravelRequest(userId);
+                return this.OkObjectResult(res, {
+                    data: getAllUserTravelRequest.result
+                }, getAllUserTravelRequest.message)
+            }
+
+            return this.BadRerquest(res, validation.errorMessage[0])
+
+        } catch (error: any) {
+            this.BadRerquest(res, error.message)
+        }
+    }
+
+
     async DeleteTravel(req: Request, res: Response, next: NextFunction) {
 
         try {

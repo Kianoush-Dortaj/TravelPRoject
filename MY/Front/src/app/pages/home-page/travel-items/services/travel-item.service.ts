@@ -14,29 +14,33 @@ export class TravelItemsService {
     @Inject(APP_CONFIG) private appConfig: IAppConfig) { }
 
 
-  GetAllTravelItems(): Observable<ServerResponse<TravelItemModel[]>> {
-    return this.httpClient.get<ServerResponse<TravelItemModel[]>>(this.appConfig.apiEndpoint + '/request/GetAll')
+  GetAllTravelItems(): Observable<ServerResponse<any>> {
+    return this.httpClient.get<ServerResponse<any>>(this.appConfig.apiEndpoint + '/travelRequest/GetAll')
+  }
+
+  GetAllReciveRequest(): Observable<ServerResponse<any>> {
+    return this.httpClient.get<ServerResponse<any>>(this.appConfig.apiEndpoint + '/request/GetAllUserRequest')
   }
 
   SendRequest(item): Observable<ServerResponse<any>> {
-    return this.httpClient.post<ServerResponse<any>>(this.appConfig.apiEndpoint + '/request/addRequest',item);
+    return this.httpClient.post<ServerResponse<any>>(this.appConfig.apiEndpoint + '/request/Create', item);
   }
 
-  ConfirmRequest(requestId): Observable<ServerResponse<any>> {
-    return this.httpClient.post<ServerResponse<any>>(this.appConfig.apiEndpoint + '/request/ConfirmRequest',
-      { requestId: requestId});
+  ConfirmRequest(requestId, status): Observable<ServerResponse<any>> {
+    return this.httpClient.put<ServerResponse<any>>(this.appConfig.apiEndpoint + '/request/ConfirmRequest',
+      { requestId: requestId, status: status });
   }
 
   RejectRequest(requestId): Observable<ServerResponse<any>> {
-    return this.httpClient.post<ServerResponse<any>>(this.appConfig.apiEndpoint + '/request/RejectRequest',  { requestId: requestId});
+    return this.httpClient.post<ServerResponse<any>>(this.appConfig.apiEndpoint + '/request/RejectRequest', { requestId: requestId });
   }
 
-  DeleteRequest(id): Observable<ServerResponse<any>> {
-    return this.httpClient.delete<ServerResponse<any>>(this.appConfig.apiEndpoint + '/request/cancelRequest/' + id);
+  DeleteRequest(requestId: string): Observable<ServerResponse<any>> {
+    return this.httpClient.delete<ServerResponse<any>>(this.appConfig.apiEndpoint + '/request/Delete/' + requestId);
   }
 
   GetAllUserTravelREquest(): Observable<ServerResponse<any>> {
-    return this.httpClient.get<ServerResponse<any>>(this.appConfig.apiEndpoint + '/request/GetAllUserTravelRequest');
+    return this.httpClient.get<ServerResponse<any>>(this.appConfig.apiEndpoint + '/travelRequest/GetAllByUserId');
   }
 
 

@@ -1,0 +1,9 @@
+<div *ngFor="let item of items" class="label">
+    <label>{{item.firstName}} {{item.lastName}}</label>
+    <div class="reject" (click)="onClick(item)">
+        Accept
+    </div>
+    <div class="accept" (click)="reject(item.id)">
+        Reject
+    </div>
+</div>

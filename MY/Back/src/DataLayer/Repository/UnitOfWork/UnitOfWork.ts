@@ -2,8 +2,12 @@ import { IJWTRepository } from '../JWT/IJWTRepository';
 import JWTRepository from '../JWT/JWTRepository';
 import { ILoginRepository } from '../Login/ILoginRepository';
 import LoginRepository from '../Login/LoginRepository';
+import { INotificationRepository } from '../Notification/INotificationRepository';
+import { NotificationRepository } from '../Notification/NotificationRepository';
 import { IProfileRepository } from '../Profile/IProfileRepository';
 import { ProfileRepository } from '../Profile/ProfileRepository';
+import { IRequestRepository } from '../Request/IRequestRepository';
+import { RequestRepository } from '../Request/RequestRepository';
 import { ITravelRequestRepository } from '../TravelRequest/ITravelRequestRepository';
 import { TravelRequestRepository } from '../TravelRequest/TravelRequestRepository';
 import { ITravelResidenceRepository } from '../TravelResdence/ITravelResidenceRepository';
@@ -22,7 +26,9 @@ export default new class UnitOfWork implements IUnitOfWork {
     ProfileRepository: IProfileRepository;
     TravelTypeRepository: ITravelTypeRepository;
     TravelResidenceRepository: ITravelResidenceRepository;
-    TravelRequestRepository:ITravelRequestRepository;
+    TravelRequestRepository: ITravelRequestRepository;
+    RequestRepository: IRequestRepository;
+    NotificationRepository: INotificationRepository;
 
     constructor() {
         this.userRepository = new UserRepository();
@@ -32,6 +38,9 @@ export default new class UnitOfWork implements IUnitOfWork {
         this.TravelTypeRepository = new TravelTypeRepository();
         this.TravelResidenceRepository = new TravelResidenceRepository()
         this.TravelRequestRepository = new TravelRequestRepository();
+        this.RequestRepository = new RequestRepository();
+        this.NotificationRepository = new NotificationRepository();
+
     }
 
 }

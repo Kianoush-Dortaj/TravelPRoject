@@ -27,6 +27,7 @@ export class GetAllTravelRequestByUserIdResolver implements Resolve<any> {
               country: data.country,
               lookingfor: data.lookingfor,
               description: data.description,
+              owner:data.owner,
               city: data.city,
               id: data.id,
               requestId: data.id,
