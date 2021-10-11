@@ -127,7 +127,7 @@ export class TravelRequestRepository implements ITravelRequestRepository {
                     const get = getAllTravelRequest.map(async (res) => {
 
                         let request = await UnitOfWork.RequestRepository.GetRequestById(res.id);
-
+                            console.log(res.userId.firstName)
                             return getAll.push({
                             budget: res.budget,
                             city: res.city,
@@ -139,7 +139,7 @@ export class TravelRequestRepository implements ITravelRequestRepository {
                             requestId: res.id,
                             reqId: request ? request.result?.id : undefined,
                             startDate: res.startDate,
-                            status: (request.result?.senderUserId == userId || request.result?.reciverUserId == userId)
+                            status: (request.result?.senderUserId == userId)
                                     ? request.result?.status : RequestStatus.SendRequest,
                             mustConfirm: ((userId == request.result?.reciverUserId) &&
                                 (request.result?.status === RequestStatus.Pendding)) ? true : false,

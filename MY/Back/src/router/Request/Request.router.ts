@@ -10,10 +10,16 @@ requestRouter.put('/Update/:id', authrization.AuthToken, requestController.Chang
 
 requestRouter.put('/ConfirmRequest', authrization.AuthToken, requestController.ConfirmRequest);
 
+requestRouter.put('/RejectRequest', authrization.AuthToken, requestController.RejectRequest);
+
 requestRouter.delete('/Delete/:id', authrization.AuthToken, requestController.DeleteRequest);
 
 requestRouter.get('/GetAllUserRequest', authrization.AuthToken, requestController.GetAllUserRequest);
 
 requestRouter.get('/GetAllReciveRequest', authrization.AuthToken, requestController.GetAllReciveRequest);
+
+requestRouter.get('/GetAllMyRequest', authrization.AuthToken, requestController.GetAllMyRequest);
+
+requestRouter.get('/GetAllUserRequests', authrization.AuthToken, requestController.GetAllUserRequests);
 
 export default requestRouter;

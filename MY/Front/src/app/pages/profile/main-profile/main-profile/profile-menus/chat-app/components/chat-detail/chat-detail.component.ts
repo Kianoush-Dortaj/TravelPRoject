@@ -4,7 +4,7 @@ import { ChatService } from '../../services/chat-service.service';
 import { SendMessageModel } from './../../models/send-message-detail-model';
 import { MessageModel } from './../../models/messages-model';
 import { APP_CONFIG, IAppConfig } from 'src/app/core/config/app.config';
-import { SocketService } from 'src/app/core/services/socket.service';
+// import { SocketService } from 'src/app/core/services/socket.service';
 
 
 @Component({
@@ -26,7 +26,7 @@ export class ChatDetailComponent implements OnInit, OnChanges, AfterViewChecked 
 
   constructor(private chatService: ChatService,
     private cdRef: ChangeDetectorRef,
-    private socket:SocketService,
+    // private socket:SocketService,
     @Inject(APP_CONFIG) public appConfig: IAppConfig) { }
 
   ngOnChanges(): void {
@@ -34,17 +34,17 @@ export class ChatDetailComponent implements OnInit, OnChanges, AfterViewChecked 
       this.paging();
 
       this.FetchMessage(this.info.connectionId);
-      this.socket.userIsTypeing()
-        .subscribe(data => {
-          this.userIsTyping = data;
-        })
-      this.socket.ReciveMessage()
-        .subscribe(data => {
-          if (data.sender == this.info.sednerId) {
-            this.chatService.playReciveAudio();
-          }
-          this.messages.push(data)
-        })
+    //   this.socket.userIsTypeing()
+    //     .subscribe(data => {
+    //       this.userIsTyping = data;
+    //     })
+    //   this.socket.ReciveMessage()
+    //     .subscribe(data => {
+    //       if (data.sender == this.info.sednerId) {
+    //         this.chatService.playReciveAudio();
+    //       }
+    //       this.messages.push(data)
+    //     })
     }
   }
 
@@ -64,19 +64,19 @@ export class ChatDetailComponent implements OnInit, OnChanges, AfterViewChecked 
     this.sendMessageModel.sender = this.info.userId;
     this.sendMessageModel.reciver = this.info.userId === this.info.sednerId ? this.info.reciverId : this.info.sednerId;
     this.sendMessageModel.userId = this.info.userId;
-    this.socket.sendMessage(this.sendMessageModel);
+    // this.socket.sendMessage(this.sendMessageModel);
     this.chatService.playSendAudio();
 
   }
 
   userTyping(): void {
-    this.socket.typing({ connectinoId: this.info.reciverId, userId: this.info.userId });
+    // this.socket.typing({ connectinoId: this.info.reciverId, userId: this.info.userId });
   }
 
   stopTyping() {
 
     setTimeout(() => {
-      this.socket.stopTyping({ connectinoId: this.info.reciverId, userId: this.info.userId })
+      // this.socket.stopTyping({ connectinoId: this.info.reciverId, userId: this.info.userId })
     }, 1000);
   }
 

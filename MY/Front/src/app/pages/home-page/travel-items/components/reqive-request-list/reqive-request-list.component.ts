@@ -31,7 +31,7 @@ export class ReqiveRequestListComponent implements OnInit {
   }
 
   reject(id) {
-    this.travelItemService.DeleteRequest(id)
+    this.travelItemService.RejectRequest(id,RequestStatus.Rejecte)
       .subscribe(data => {
         // this.sneNotification(data.result.reciver, data.result.sender, NotificationType.ChangeStatusNotification);
         this.alertService.SuccessToast(data.message);

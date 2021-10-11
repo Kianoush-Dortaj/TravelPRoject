@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { AlertService } from 'src/app/core/alert/alert-service';
 import { APP_CONFIG, IAppConfig } from 'src/app/core/config/app.config';
-import { SocketService } from 'src/app/core/services/socket.service';
 import { RequestStatus } from '../models/request-status-enum';
 import { SendRequest } from '../models/send-request-model';
 import { TravelItemsService } from '../services/travel-item.service';
@@ -27,21 +26,21 @@ export class TravelItemComponent implements OnInit {
     private travelService: TravelItemsService,
     private alertService: AlertService,
     public dialog: MatDialog,
-    private socket: SocketService,
+    // private socket: SocketService,
     @Inject(APP_CONFIG) public appConfig: IAppConfig) { }
 
   ngOnInit(): void {
     this.fetchDate();
-    this.socket.changeTravelStatus()
-      .subscribe(data => {
-        let item = this.items.find(x => x.id == data.requestId);
-        item.status = data.status;
-        if (item.status == RequestStatus.Pendding) {
-          item.mustConfirm = true;
-        } else if (item.mustConfirm == true && item.status !== RequestStatus.Pendding) {
-          item.mustConfirm = false;
-        }
-      })
+    // this.socket.changeTravelStatus()
+    //   .subscribe(data => {
+    //     let item = this.items.find(x => x.id == data.requestId);
+    //     item.status = data.status;
+    //     if (item.status == RequestStatus.Pendding) {
+    //       item.mustConfirm = true;
+    //     } else if (item.mustConfirm == true && item.status !== RequestStatus.Pendding) {
+    //       item.mustConfirm = false;
+    //     }
+    //   })
   }
 
   fetchDate(): void {
@@ -55,7 +54,7 @@ export class TravelItemComponent implements OnInit {
     sendNotifiacion.reciver = reciver;
     sendNotifiacion.notificationType = notifType;
 
-    this.socket.SendNotification(sendNotifiacion);
+    // this.socket.SendNotification(sendNotifiacion);
   }
 
   sendRequest(reciverId, requestId, status, reqId) {
@@ -92,7 +91,7 @@ export class TravelItemComponent implements OnInit {
           if (data.success) {
             let item = this.items.find(x => x.id == requestId);
             item.status = RequestStatus.SendRequest;
-            this.socket.sendChangeTravelStatus({ reciver: data.result.reciver, status: RequestStatus["Send Request"], id: data.result.requestId })
+            // this.socket.sendChangeTravelStatus({ reciver: data.result.reciver, status: RequestStatus["Send Request"], id: data.result.requestId })
           }
           this.alertService.SuccessToast(data.message);
         })
@@ -112,7 +111,7 @@ export class TravelItemComponent implements OnInit {
           let item = this.items.find(x => x.id == id);
           item.mustConfirm = false;
           item.status = RequestStatus.Accept;
-          this.socket.sendChangeTravelStatus({ reciver: data.result.sender, status: RequestStatus.Accept, id: data.result.targetRequestId })
+          // this.socket.sendChangeTravelStatus({ reciver: data.result.sender, status: RequestStatus.Accept, id: data.result.targetRequestId })
         })
     });
 
@@ -127,7 +126,7 @@ export class TravelItemComponent implements OnInit {
         let item = this.items.find(x => x.id == id);
         item.mustConfirm = false;
         item.status = RequestStatus.Rejecte;
-        this.socket.sendChangeTravelStatus({ reciver: data.result.sender, status: RequestStatus.Rejecte, id: data.result.targetRequestId })
+        // this.socket.sendChangeTravelStatus({ reciver: data.result.sender, status: RequestStatus.Rejecte, id: data.result.targetRequestId })
       })
   }
 }

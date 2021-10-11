@@ -57,14 +57,14 @@ export default class LoginRepository implements ILoginRepository {
 
             let token = await unitofWork.jwtRepository.GenerateToken(userInfo.result);
 
-            // let getUserInfo = await unitofWork.userRepository.GetUserInfoForLogin(username);
-            if (token.success) {
+              if (token.success) {
                 return OperationResult.BuildSuccessResult(token.message, {
                     hash: '',
                     isTowfactor: false,
                     token: token.result,
                     userInfo: {
-                        displayName: userInfo.result?.displayName
+                        displayName: userInfo.result?.displayName,
+                        userId:userInfo.result?.userId
                     }
                 });
             }

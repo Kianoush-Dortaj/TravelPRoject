@@ -5,6 +5,11 @@ import { NotificationEntitie } from "../../Context/Notification/Notification";
 import { NotificationType } from "../../Context/Notification/NotificationType";
 import { GetAllUnSeenNotificationbyUserIdModel } from "../../../DTO/Notification/GetAllUnSeenNotificationbyUserIdModel";
 import { GetAllUnSeenNotificationModel } from "../../../DTO/Notification/GetAllUnSeenNotificationModel";
+import websocket from "../../../Utilities/Websocket/Websocket";
+import { NotificationSocketModel } from "../../../DTO/Websocket/notification-socket-model";
+import UnitOfWork from "../UnitOfWork/UnitOfWork";
+import { ListenType } from "../../../Utilities/Websocket/Pattern/listen-type";
+
 
 export class NotificationRepository implements INotificationRepository {
 
@@ -20,8 +25,10 @@ export class NotificationRepository implements INotificationRepository {
                 senderUserId: senderUserId
             });
 
-            notification.save();
 
+            await notification.save();
+
+            await this.SendSocketNotification(notification.id);
             return OperationResult.BuildSuccessResult("Success Add Notification", true)
 
         } catch (error: any) {
@@ -34,7 +41,7 @@ export class NotificationRepository implements INotificationRepository {
 
         try {
 
-             await NotificationEntitie.updateOne({
+            await NotificationEntitie.updateOne({
                 reciverUserId: userId,
                 _id: notifId
             }, {
@@ -100,6 +107,39 @@ export class NotificationRepository implements INotificationRepository {
             });
 
             return OperationResult.BuildSuccessResult("Get All UnSeen Notification", getAll);
+
+        } catch (error: any) {
+            return OperationResult.BuildFailur(error.message)
+        }
+
+    }
+
+    async SendSocketNotification(notificationId: string): Promise<OperationResult<boolean>> {
+
+        try {
+
+
+            let getNotification = await NotificationEntitie.
+                findById(notificationId)
+                .populate("senderUserId");
+
+            if (getNotification) {
+                UnitOfWork.websocket.sendMessageToUser<NotificationSocketModel>({
+                    message: {
+                        id: getNotification.id,
+                        notificationType: getNotification.notificationType,
+                        senderId: getNotification.senderUserId.id,
+                        senderName: getNotification.senderUserId.firstName + ' ' + getNotification.senderUserId.lastName
+                    },
+                    type: ListenType.Request
+                }, getNotification.reciverUserId);
+
+                return OperationResult.BuildSuccessResult("send notification", true);
+
+            }
+
+            return OperationResult.BuildFailur("can not find Item");
+
 
         } catch (error: any) {
             return OperationResult.BuildFailur(error.message)

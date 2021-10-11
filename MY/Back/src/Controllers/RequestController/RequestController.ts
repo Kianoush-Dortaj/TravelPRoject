@@ -94,6 +94,34 @@ export default new class RequestController extends BaseController {
         }
     }
 
+    async RejectRequest(req: Request, res: Response, next: NextFunction) {
+
+        try {
+            const { requestId, status } = req.body;
+
+            let validation = await this.ValidationAction(req, res);
+
+            if (!validation.haveError) {
+
+                let userId = (await UnitOfWork.jwtRepository.DecodeToken(req, res, next)).result;
+
+                let addTravelRequest = await UnitOfWork.RequestRepository.RejectRequest({
+                    requestId,
+                    status,
+                    userId
+                });
+
+                return this.Ok(res, addTravelRequest.message);
+
+            }
+
+            return this.BadRerquest(res, validation.errorMessage[0]);
+
+        } catch (error: any) {
+            this.BadRerquest(res, error.message)
+        }
+    }
+
     async DeleteRequest(req: Request, res: Response, next: NextFunction) {
 
         try {
@@ -153,6 +181,56 @@ export default new class RequestController extends BaseController {
             if (!validation.haveError) {
 
                 let deleteTravelRequest = await UnitOfWork.RequestRepository.GetAllReciveRequest(userId);
+
+                return this.OkObjectResult(res, {
+                    data: deleteTravelRequest.result
+                }, deleteTravelRequest.message);
+
+            }
+
+            return this.BadRerquest(res, validation.errorMessage[0]);
+
+        } catch (error: any) {
+            this.BadRerquest(res, error.message)
+        }
+    }
+
+    async GetAllMyRequest(req: Request, res: Response, next: NextFunction) {
+
+        try {
+            let userId = (await UnitOfWork.jwtRepository.DecodeToken(req, res, next)).result;
+
+
+            let validation = await this.ValidationAction(req, res);
+
+            if (!validation.haveError) {
+
+                let deleteTravelRequest = await UnitOfWork.RequestRepository.GetAllMyRequest(userId);
+
+                return this.OkObjectResult(res, {
+                    data: deleteTravelRequest.result
+                }, deleteTravelRequest.message);
+
+            }
+
+            return this.BadRerquest(res, validation.errorMessage[0]);
+
+        } catch (error: any) {
+            this.BadRerquest(res, error.message)
+        }
+    }
+
+    async GetAllUserRequests(req: Request, res: Response, next: NextFunction) {
+
+        try {
+            let userId = (await UnitOfWork.jwtRepository.DecodeToken(req, res, next)).result;
+
+
+            let validation = await this.ValidationAction(req, res);
+
+            if (!validation.haveError) {
+
+                let deleteTravelRequest = await UnitOfWork.RequestRepository.GetAllUserRequests(userId);
 
                 return this.OkObjectResult(res, {
                     data: deleteTravelRequest.result

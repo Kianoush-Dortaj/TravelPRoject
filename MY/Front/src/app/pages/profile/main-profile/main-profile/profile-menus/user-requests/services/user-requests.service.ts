@@ -14,7 +14,12 @@ export class UserRequestService {
     @Inject(APP_CONFIG) private appConfig: IAppConfig) { }
 
   GetAllUserTravelRequest(): Observable<ServerResponse<any>> {
-    return this.httpClient.get<ServerResponse<any>>(this.appConfig.apiEndpoint + '/travelRequest/GetAllByUserId')
+    return this.httpClient.get<ServerResponse<any>>(this.appConfig.apiEndpoint + '/request/GetAllUserRequest')
+  }
+
+
+  GetAllUserRequest(): Observable<ServerResponse<any>> {
+    return this.httpClient.get<ServerResponse<any>>(this.appConfig.apiEndpoint + '/request/GetAllUserRequests')
   }
 
   GetAllMyTravelRequest(): Observable<ServerResponse<any>> {

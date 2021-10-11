@@ -12,25 +12,31 @@ export class GetAllUserRequestResolver implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot): Observable<any> | Promise<any> | any {
 
-   return this.userRequets.GetAllUserTravelRequest()
+   return this.userRequets.GetAllUserRequest()
       .pipe(
         map(res => {
           if (res) {
             return res.result.data.map(data => {
               return {
+                travelType: data.travelTypeId,
+                travelResidence: data.travelesidenceId,
                 userId: data.userId,
                 startDate: data.startDate,
                 endDate: data.endDate,
                 country: data.country,
+                lookingfor: data.lookingfor,
+                description: data.description,
+                mustConfirm: data.mustConfirm,
+                reqId: data.reqId,
+                owner: data.owner,
+                status: data.status,
                 city: data.city,
                 id: data.id,
-                displayName: data.displayName,
-                travelType: data.travelTypeName,
+                requestId: data.id,
+                displayName: data.firstName + ' ' + data.lastName,
+                travelTypeName: data.travelTypeName,
                 travelTypeIcon: data.travelTypeIcon,
-                travelResident: data.travelResident,
-                status: data.status,
-                mustConfirm: data.mustConfirm,
-                owner: data.owner,
+                travelResidentName: data.travelResidentName,
                 travelResidentIcon: data.travelResidentIcon,
                 budget: data.budget,
                 diffDate: (startDate, endDate) => {

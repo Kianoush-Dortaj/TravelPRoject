@@ -31,8 +31,9 @@ export class TravelItemsService {
       { requestId: requestId, status: status });
   }
 
-  RejectRequest(requestId): Observable<ServerResponse<any>> {
-    return this.httpClient.post<ServerResponse<any>>(this.appConfig.apiEndpoint + '/request/RejectRequest', { requestId: requestId });
+  RejectRequest(requestId , status): Observable<ServerResponse<any>> {
+    return this.httpClient.put<ServerResponse<any>>(this.appConfig.apiEndpoint + '/request/RejectRequest',
+     { requestId: requestId , status: status  });
   }
 
   DeleteRequest(requestId: string): Observable<ServerResponse<any>> {

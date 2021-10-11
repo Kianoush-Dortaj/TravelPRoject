@@ -186,6 +186,39 @@ export class RequestRepository implements IRequestRepository {
         }
     }
 
+    async RejectRequest(item: UpdateStatusRequestModel): Promise<OperationResult<boolean>> {
+        try {
+            console.log(item)
+            let request = await RequestEntitie.findByIdAndUpdate({ _id: item.requestId },
+                {
+                    $set: {
+                        status: item.status
+                    }
+                });
+
+
+            if (request) {
+                let setNotification = await unitOfWork.NotificationRepository.SetNotification
+                    (NotificationType.RejectNotification,
+                        request.senderUserId,
+                        request.reciverUserId);
+
+                if (setNotification.success) {
+                    await RedisManager.Set(RedisKey.RequestByTravelId + item.requestId, request);
+                    return OperationResult.BuildSuccessResult("Success Add Travel Reuqest", true);
+                }
+
+                return OperationResult.BuildFailur(setNotification.message);
+            }
+
+            // await RedisManager.ResetSingleItem(RedisKey.RequestByTravelId + item.requestId, request);
+            return OperationResult.BuildSuccessResult("Success Confirm Reuqest", true);
+
+        } catch (error: any) {
+            return OperationResult.BuildFailur(error.message);
+        }
+    }
+
     async DeleteRequest(requestId: string): Promise<OperationResult<boolean>> {
         try {
 
@@ -241,9 +274,8 @@ export class RequestRepository implements IRequestRepository {
 
                 const get = requestFind.map(async (res) => {
 
-                    let request = await UnitOfWork.RequestRepository.GetRequestById(res.id);
-console.log(((reciverId == request.result?.reciverUserId) &&
-(request.result?.status === RequestStatus.Pendding)) )
+                    // let request = await UnitOfWork.RequestRepository.GetRequestById(res.id);
+                    // console.log(request.result)
                     return getAll.push({
                         budget: res.requestId.budget,
                         city: res.requestId.city,
@@ -253,12 +285,10 @@ console.log(((reciverId == request.result?.reciverUserId) &&
                         id: res.id,
                         lookingfor: res.requestId.lookingfor,
                         requestId: res.id,
-                        reqId: request ? request.result?.id : undefined,
+                        reqId: res.id,
                         startDate: res.requestId.startDate,
-                        status: (request.result?.senderUserId == reciverId || request.result?.reciverUserId == reciverId)
-                            ? request.result?.status : RequestStatus.SendRequest,
-                        mustConfirm: ((reciverId == request.result?.reciverUserId) &&
-                            (request.result?.status === RequestStatus.Pendding)) ? true : false,
+                        status: res.status,
+                        mustConfirm: res.status === RequestStatus.Pendding ? true : false,
                         travelesidenceId: res.requestId.travelResidence.id,
                         firstName: res.requestId.userId.firstName,
                         lastName: res.requestId.userId.lastName,
@@ -269,6 +299,165 @@ console.log(((reciverId == request.result?.reciverUserId) &&
                         travelTypeId: res.requestId.travelType.id,
                         travelTypeName: res.requestId.travelType.name,
                         userId: res.requestId.userId.id
+                    })
+                });
+
+                const numFruits = await Promise.all(get);
+            }
+
+            await mapLoop();
+
+            if (requestFind) {
+                return OperationResult.BuildSuccessResult("Find", getAll);
+            }
+            return OperationResult.BuildFailur("can not Find");
+
+        } catch (error: any) {
+            return OperationResult.BuildFailur(error.message);
+        }
+    }
+
+    async GetAllMyRequest(senderId: string): Promise<OperationResult<GetAllUserIdModel[]>> {
+        try {
+
+            let getAll: GetAllUserIdModel[] = [];
+
+            let requestFind = await RequestEntitie.
+                find({ senderUserId: senderId })
+                .populate({
+                    path: "requestId",
+                    populate: [
+                        {
+                            path: "userId"
+                        },
+                        {
+                            path: "travelType"
+                        },
+                        {
+                            path: "travelResidence"
+                        }
+                    ],
+
+                });
+
+            const mapLoop = async () => {
+
+                const get = requestFind.map(async (res) => {
+
+                    // let request = await UnitOfWork.RequestRepository.GetRequestById(res.id);
+                    // console.log(request.result)
+                    return getAll.push({
+                        budget: res.requestId.budget,
+                        city: res.requestId.city,
+                        country: res.requestId.country,
+                        description: res.requestId.description,
+                        endDate: res.requestId.endDate,
+                        id: res.id,
+                        lookingfor: res.requestId.lookingfor,
+                        requestId: res.id,
+                        reqId: res.id,
+                        startDate: res.requestId.startDate,
+                        status: res.status,
+                        mustConfirm: false,
+                        travelesidenceId: res.requestId.travelResidence.id,
+                        firstName: res.requestId.userId.firstName,
+                        lastName: res.requestId.userId.lastName,
+                        owner: true,
+                        travelResidentIcon: res.requestId.travelResidence.icon,
+                        travelResidentName: res.requestId.travelResidence.name,
+                        travelTypeIcon: res.requestId.travelType.icon,
+                        travelTypeId: res.requestId.travelType.id,
+                        travelTypeName: res.requestId.travelType.name,
+                        userId: res.requestId.userId.id
+                    })
+                });
+
+                const numFruits = await Promise.all(get);
+            }
+
+            await mapLoop();
+
+            if (requestFind) {
+                return OperationResult.BuildSuccessResult("Find", getAll);
+            }
+            return OperationResult.BuildFailur("can not Find");
+
+        } catch (error: any) {
+            return OperationResult.BuildFailur(error.message);
+        }
+    }
+
+    async GetAllUserRequests(userId: string): Promise<OperationResult<GetAllUserIdModel[]>> {
+        try {
+
+            let getAll: GetAllUserIdModel[] = [];
+
+            let requestFind = await RequestEntitie.
+                find({ $or: [{ reciverUserId: userId }, { senderUserId: userId }] })
+                .populate([{
+                    path: "requestId",
+                    populate: [
+                        {
+                            path: "userId"
+                        },
+                        {
+                            path: "travelType"
+                        },
+                        {
+                            path: "travelResidence"
+                        }
+                    ]
+                },
+                {
+                    path: "targetRequestId",
+                    populate: [
+                        {
+                            path: "userId"
+                        },
+                        {
+                            path: "travelType"
+                        },
+                        {
+                            path: "travelResidence"
+                        }
+                    ]
+                },
+                {
+                    path: "senderUserId",
+                },
+                {
+                    path: "reciverUserId"
+                }
+                ]);
+            const mapLoop = async () => {
+
+                const get = requestFind.map(async (res) => {
+
+                      let youSendRequest = userId === res.senderUserId.id ? true : false;
+
+                    return getAll.push({
+                        budget: youSendRequest ? res.targetRequestId.budget : res.requestId.budget,
+                        city: youSendRequest ? res.targetRequestId.city : res.requestId.city,
+                        country: youSendRequest ? res.targetRequestId.country : res.requestId.country,
+                        description: youSendRequest ? res.targetRequestId.description : res.requestId.description,
+                        endDate: youSendRequest ? res.targetRequestId.endDate : res.requestId.endDate,
+                        id: res.id,
+                        lookingfor: youSendRequest ? res.targetRequestId.lookingfor : res.requestId.lookingfor,
+                        requestId: res.id,
+                        reqId: res.id,
+                        startDate: youSendRequest ? res.targetRequestId.startDate : res.requestId.startDate,
+                        status: res.status,
+                        mustConfirm: youSendRequest?false: res.status=== RequestStatus.Pendding?true:false,
+                        travelesidenceId: youSendRequest ? res.targetRequestId.travelResidence.id : res.requestId.travelResidence.id,
+                        firstName: youSendRequest ? res.targetRequestId.userId.firstName : res.requestId.userId.firstName,
+                        lastName: youSendRequest ? res.targetRequestId.userId.lastName : res.requestId.userId.lastName,
+                        owner: res.reciverUserId.id !== userId,
+                        travelResidentIcon: youSendRequest ? res.targetRequestId.travelResidence.lastName : res.requestId.travelResidence.lastName,
+                        travelResidentName: youSendRequest ? res.targetRequestId.travelResidence.lastName : res.requestId.travelResidence.lastName,
+                        travelTypeIcon: youSendRequest ? res.targetRequestId.travelResidence.lastName : res.requestId.travelResidence.lastName,
+                        travelTypeId: youSendRequest ? res.targetRequestId.travelResidence.lastName : res.requestId.travelResidence.lastName,
+                        travelTypeName: youSendRequest ? res.targetRequestId.travelResidence.lastName : res.requestId.travelResidence.lastName,
+                        userId: youSendRequest ? res.reciverUserId.id : res.senderUserId.id
                     })
                 });
 

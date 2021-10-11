@@ -1,5 +1,5 @@
 import { Directive, HostListener, Input } from "@angular/core";
-import { SocketService } from 'src/app/core/services/socket.service';
+// import { SocketService } from 'src/app/core/services/socket.service';
 import { ChatService } from '../../../services/chat-service.service';
 
 @Directive({
@@ -8,7 +8,9 @@ import { ChatService } from '../../../services/chat-service.service';
 export class ScrollDirective {
   pagingNumber = 2;
 
-  constructor(private chatService: ChatService, private socket: SocketService) { }
+  constructor(private chatService: ChatService,
+    //  private socket: SocketService
+     ) { }
 
   @Input() connectionId;
   @Input() userId;
@@ -19,7 +21,7 @@ export class ScrollDirective {
       this.chatService.paging(this.pagingNumber++)
     }
     if (elem.scrollTop + elem.clientHeight >= elem.scrollHeight) {
-      this.socket.seen({ connectionId: this.connectionId, reciver: this.userId })
+      // this.socket.seen({ connectionId: this.connectionId, reciver: this.userId })
     }
   }
 

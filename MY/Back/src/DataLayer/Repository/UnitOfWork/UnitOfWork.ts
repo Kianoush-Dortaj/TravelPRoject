@@ -1,3 +1,4 @@
+import Websocket from '../../../Utilities/Websocket/Websocket';
 import { IJWTRepository } from '../JWT/IJWTRepository';
 import JWTRepository from '../JWT/JWTRepository';
 import { ILoginRepository } from '../Login/ILoginRepository';
@@ -29,6 +30,7 @@ export default new class UnitOfWork implements IUnitOfWork {
     TravelRequestRepository: ITravelRequestRepository;
     RequestRepository: IRequestRepository;
     NotificationRepository: INotificationRepository;
+    websocket:Websocket;
 
     constructor() {
         this.userRepository = new UserRepository();
@@ -40,6 +42,7 @@ export default new class UnitOfWork implements IUnitOfWork {
         this.TravelRequestRepository = new TravelRequestRepository();
         this.RequestRepository = new RequestRepository();
         this.NotificationRepository = new NotificationRepository();
+        this.websocket = new Websocket();
 
     }
 

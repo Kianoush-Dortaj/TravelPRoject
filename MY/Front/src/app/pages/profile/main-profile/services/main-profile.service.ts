@@ -18,8 +18,8 @@ export class MainProfileService {
     @Inject(APP_CONFIG) private appConfig: IAppConfig) { }
 
 
-  GetProfileInformation(): Observable<ServerResponse<GetProfileInfoModel>> {
-    return this.httpClient.get<ServerResponse<GetProfileInfoModel>>(this.appConfig.apiEndpoint + '/profile/GetProfileInfo')
+  GetProfileInformation(): Observable<any> {
+    return this.httpClient.get<any>(this.appConfig.apiEndpoint + '/profile/GetProfileInfo')
   }
 
   GetOtherProfileInformation(id): Observable<ServerResponse<GetProfileInfoModel>> {

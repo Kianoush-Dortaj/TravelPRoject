@@ -12,6 +12,9 @@ export interface IRequestRepository {
     GetRequestById(requestId: string): Promise<OperationResult<GetRequestModel>>;
     DeleteRequest(requestId: string): Promise<OperationResult<boolean>>;
     ConfirmRequest(item: UpdateStatusRequestModel): Promise<OperationResult<boolean>>
+    RejectRequest(item: UpdateStatusRequestModel): Promise<OperationResult<boolean>>
     GetAllUserReciveRequest(reciverId: string): Promise<OperationResult<GetAllUserSendRequestModel[]>>;
-    GetAllReciveRequest(reciverId:string): Promise<OperationResult<GetAllUserIdModel[]>>;
+    GetAllReciveRequest(reciverId: string): Promise<OperationResult<GetAllUserIdModel[]>>;
+    GetAllMyRequest(senderId: string): Promise<OperationResult<GetAllUserIdModel[]>>;
+    GetAllUserRequests(userId: string): Promise<OperationResult<GetAllUserIdModel[]>>;
 }

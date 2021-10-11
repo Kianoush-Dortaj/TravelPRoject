@@ -63,7 +63,9 @@ export default new class TravelRequestController extends BaseController {
     async GetAllTravelRequest(req: Request, res: Response, next: NextFunction) {
 
         try {
+            
             let validation = await this.ValidationAction(req, res);
+
             let userId = (await UnitOfWork.jwtRepository.DecodeToken(req, res, next)).result;
 
             if (!validation.haveError) {

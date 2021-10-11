@@ -20,8 +20,8 @@ export default new class LoginController extends BaseController {
                 let loginUser = await UnitOfWork.LoginRepository.UserrLogin(email, password)
 
                 if (loginUser.success) {
-                    Webocket.wss.emit('message', 'Login');
-
+                    
+        
                     return this.OkObjectResult(res, loginUser.result, "Success Login");
                 } else {
                     return this.BadRerquest(res, loginUser.message);

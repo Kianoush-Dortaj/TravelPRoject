@@ -5,7 +5,7 @@ import DatabaseWrapper from './DatabaseWrapper/DatabaseWrapper';
 import RedisManager from './Utilities/Redis/RedisRepository';
 import cros from 'cors';
 import nodeMailer from './Utilities/Email/NodeMailer';
-import Webocket from './Utilities/Websocket/Websocket';
+import UnitOfWork from './DataLayer/Repository/UnitOfWork/UnitOfWork';
 
 export default new class Startup {
     app = express();
@@ -21,11 +21,12 @@ export default new class Startup {
      * Run Server
      */
     CreateServer(): void {
+
         this.app.listen(this.port, () => {
             console.log(`Profile is listening on port ${this.port}`);
         })
 
-        Webocket.InitialWebsocket();
+        UnitOfWork.websocket.InitialWebsocket();
 
     }
     /**

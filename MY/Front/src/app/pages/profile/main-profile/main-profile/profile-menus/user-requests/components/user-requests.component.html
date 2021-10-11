@@ -7,7 +7,9 @@
   <div class="items">
     <div *ngFor="let item of items" class="item">
       <div class="image">
-        <img [src]="appConfig.apiEndpoint + '/profile/GetAvatar/' + item.userId" />
+        <img [src]="
+        
+        appConfig.apiEndpoint + '/profile/GetAvatar/' + item.userId" />
       </div>
       <div class="description">
         <div class="top">
@@ -20,7 +22,7 @@
           <div class="destination">
             <i class="fal fa-compass"></i> {{ item.country }}. {{ item.city }}
           </div>
-          <div class="lookingFor"><i class="fal fa-campground"></i> {{item.travelResident}}</div>
+          <div class="lookingFor"><i class="fal fa-campground"></i> {{item.travelResidentName}}</div>
         </div>
         <div class="under">
           <div class="travelDate">
@@ -30,7 +32,7 @@
             {{ item.diffDate(item.endDate, item.startDate) }} days )
           </div>
           <div class="travelby">
-            <i class="far fa-route-highway"></i> {{item.travelType}}
+            <i class="far fa-route-highway"></i> {{item.travelTypeName}}
           </div>
         </div>
       </div>
@@ -42,10 +44,15 @@
           </span>
         </button>
         <div class="confirmButton" *ngIf="item.mustConfirm">
-          <button>Reject</button>
+          <button (click)="reject(item.id)">Reject</button>
           <button (click)="confirm(item.id)">Confirm</button>
         </div>
       </div>
     </div>
   </div>
+ 
 </div>
+ 
+<ng-template #reserved>
+  Reserved
+</ng-template>
